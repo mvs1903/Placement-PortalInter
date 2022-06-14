@@ -13,6 +13,16 @@
     border: 0px solid rgb(20, 24, 33) ;
 }
 
+.adminNav{
+    text-decoration: none;
+    /* text-align: left; */
+    background-color: white;
+    display: grid;
+    box-shadow: 4px 4px 10px rgb(20, 24, 33);
+    border-radius: 5px;
+    border: 0px solid rgb(20, 24, 33) ;
+}
+
 #navImg{
     margin: 10px 20px 0px 20px;
     height: 100px;

@@ -1,9 +1,6 @@
 import React , {useState} from 'react'
 import {Link, useNavigate} from "react-router-dom"
-import { useUserAuth } from './userAuthContext'
-
-
-
+import { useUserAuth } from '../userAuthContext'
 
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
