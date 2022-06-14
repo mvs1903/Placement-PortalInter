@@ -4,34 +4,34 @@ import {
      collection,
      addDoc,
      setDoc,doc
-   }from 'firebase/firestore'
+     }from 'firebase/firestore'
 
 
 
 
 export default function SecondPage() {
 
- const [SAPID , setSAPID] = useState(0)
- const [firstName, setFirstName] = useState('');
- const [middleName, setMiddleName] = useState('');
- const [surname, setSurname] = useState('');
- const [motherName, setMotherName] = useState('');
- const [phoneNo, setPhoneNo] = useState(0);
- const [emailID, setEmailID] = useState('');
- const [DOB, setDOB] = useState('');
- const [address, setAddress] = useState('');
+     const [SAPID , setSAPID] = useState(0)
+     const [firstName, setFirstName] = useState('');
+     const [middleName, setMiddleName] = useState('');
+     const [surname, setSurname] = useState('');
+     const [motherName, setMotherName] = useState('');
+     const [phoneNo, setPhoneNo] = useState(0);
+     const [emailID, setEmailID] = useState('');
+     const [DOB, setDOB] = useState('');
+     const [address, setAddress] = useState('');
 
- const [educationGap, seteducationGap] = useState('');
- const [tenthPercent, setTenthPercent] = useState(0);
- const [twelfthPercent, setTwelfthPercent] = useState(0);
- const [JEE, setJEE] = useState(0)
- const [CET, setCET] = useState(0)
- const [SEM1, setSEM1] = useState(0)
- const [SEM2, setSEM2] = useState(0)
- const [SEM3, setSEM3] = useState(0)
- const [SEM4, setSEM4] = useState(0)
- const [SEM5, setSEM5] = useState(0)
- const [SEM6, setSEM6] = useState(0)
+     const [educationGap, seteducationGap] = useState('');
+     const [tenthPercent, setTenthPercent] = useState(0);
+     const [twelfthPercent, setTwelfthPercent] = useState(0);
+     const [JEE, setJEE] = useState(0)
+     const [CET, setCET] = useState(0)
+     const [SEM1, setSEM1] = useState(0)
+     const [SEM2, setSEM2] = useState(0)
+     const [SEM3, setSEM3] = useState(0)
+     const [SEM4, setSEM4] = useState(0)
+     const [SEM5, setSEM5] = useState(0)
+     const [SEM6, setSEM6] = useState(0)
 
 
 // const [data,setData] = useState({
@@ -43,9 +43,9 @@ export default function SecondPage() {
 
 // }
 
-  const handleSAPID = (e) =>{
-    setSAPID(e.target.value)
-  }
+     const handleSAPID = (e) =>{
+          setSAPID(e.target.value)
+     }
  const handleFirstName = (e) => {
    setFirstName(e.target.value)
  }
@@ -149,16 +149,15 @@ await setDoc(doc(db, "Details", SAPID), {
 
      educationGap : educationGap,
      tenthPercent : Number(tenthPercent),
-      twelfthPercent : Number(twelfthPercent),
-      JEE : Number(JEE),
-      CET : Number(CET),
-      SEM1 : Number(SEM1),
-      SEM2 : Number(SEM2),
-      SEM3 : Number(SEM3),
-      SEM4 : Number(SEM4),
-      SEM5 : Number(SEM5),
-      SEM6 : Number(SEM6),
-      
+     twelfthPercent : Number(twelfthPercent),
+     JEE : Number(JEE),
+     CET : Number(CET),
+     SEM1 : Number(SEM1),
+     SEM2 : Number(SEM2),
+     SEM3 : Number(SEM3),
+     SEM4 : Number(SEM4),
+     SEM5 : Number(SEM5),
+     SEM6 : Number(SEM6),
      });
      //   });
      console.log("Input entered")
