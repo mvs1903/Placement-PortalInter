@@ -5,6 +5,7 @@ import GetTableFromExcel from './readxl';
 
 class ExcelR extends Component {
 
+	
 	state = {
 
 	// Initially, no file is selected

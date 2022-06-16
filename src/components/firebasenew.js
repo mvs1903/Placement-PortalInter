@@ -6,6 +6,7 @@ import { getDatabase } from 'firebase/database';
 
 import { doc, setDoc } from "firebase/firestore"; 
 
+
 const firebaseConfig = {
  apiKey: "AIzaSyD9VnU4mU2uBJNzMSQrOsylss4_ZX-1Etc",
  authDomain: "placementproj.firebaseapp.com",

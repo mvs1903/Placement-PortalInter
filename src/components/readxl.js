@@ -2,6 +2,7 @@
 import {read,utils} from 'xlsx/xlsx.mjs';
 // import XLSX from ".../dist/xlsx.core.min.js"
 
+
 import push_data from './firebasenew';
 function GetTableFromExcel(data) {
  ExcelToJSON(data);

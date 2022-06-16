@@ -4,10 +4,6 @@ import {getFirestore}from 'firebase/firestore'
 import {getAuth} from "firebase/auth"
 import { getDatabase } from 'firebase/database';
 
-import { doc, setDoc } from "firebase/firestore";
-
-// function StartFirebase(){
-
   // const firebaseConfig = {
   //   apiKey: "AIzaSyAhF3hNDNlJt04tydJj5mzNqiw0MPswDw4",
   //   authDomain: "djsce-pp0.firebaseapp.com",
@@ -19,30 +15,22 @@ import { doc, setDoc } from "firebase/firestore";
   // };
 
   const firebaseConfig = {
-    apiKey: "AIzaSyD9VnU4mU2uBJNzMSQrOsylss4_ZX-1Etc",
-    authDomain: "placementproj.firebaseapp.com",
-    databaseURL: "https://placementproj-default-rtdb.firebaseio.com",
-    projectId: "placementproj",
-    storageBucket: "placementproj.appspot.com",
-    messagingSenderId: "57199764219",
-    appId: "1:57199764219:web:35c33447669ad5ecb1c65e"
+    apiKey: "AIzaSyCBgKI1-dxSdVf1I0vVGAUuhZ4C4xrQdBc",
+    authDomain: "djsce-pp1.firebaseapp.com",
+    projectId: "djsce-pp1",
+    storageBucket: "djsce-pp1.appspot.com",
+    messagingSenderId: "544701194222",
+    appId: "1:544701194222:web:2e48a5dcf41ee3b87878ff",
+    measurementId: "G-W1XHNFM2BG"
   };
-
   const app = initializeApp(firebaseConfig)
 
-  // return getDatabase(app) 
+  // return getDatabase(app)
   
 // }
   export const db = getFirestore(app)
   // export const db = getDatabase(app)
   export const auth = getAuth(app)
-  // export default StartFirebase 
-
-// Add a new document in collection "cities"
-// await setDoc(doc(db, "cities", "LA"), {
-//   name: "Los Angeles",
-//   state: "CA",
-//   country: "USA"
-// });
+  // export default StartFirebase
 
   
