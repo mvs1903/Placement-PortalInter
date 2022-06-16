@@ -3,13 +3,15 @@ import {ref , onValue, child} from 'firebase/database'
 // import StartFirebase from './firebaseConfig'
 import { Table } from 'react-bootstrap'
 import { collection, getDoc, getDocs } from 'firebase/firestore'
-import { db } from './firebaseConfig'
+import {db} from "../firebaseConfig"
 import {
   JsonToCsv,
   useJsonToCsv
 } from 'react-json-csv';
 
-import enteredSAP from './SapLogin';
+import enteredSAP from '../Student/SapLogin';
+import AdminNav from './AdminNav'
+import { Link } from 'react-router-dom'
 
 const filename = 'Csv-file';
 
@@ -144,22 +146,20 @@ export default function  Admin() {
     const getPersonalDetails = async() =>{
         
       const details =  await getDocs(collection(db,'Details'))
-      // let records = details.docs.map((doc)=>({...doc.data(),id:enteredSAP}))
+      let records = details.docs.map((doc)=>({...doc.data(),id:enteredSAP}))
+      setTableData(records);   
 
-      // const details =  await getDocs(collection(db,'Compny'))
-
-      let arr = []
-      let records = details.docs.map((doc)=>({...doc.data(),id:'TCS'}))
-      for(let i =0;i<records[0].Students.length;i++){
-        var x = await (await getDoc(records[0].Students[i])).data()
-        console.log(x)
-        arr.push(x)
-      }
+      // const details =  await getDocs(collection(db,'Company'))
+      // let arr = []
+      // let records = details.docs.map((doc)=>({...doc.data(),id:'TCS'}))
+      // for(let i =0;i<records[0].Students.length;i++){
+      //   var x = await (await getDoc(records[0].Students[i])).data()
+      //   console.log(x)
+      //   arr.push(x)
+      // }
         
-      // setTableData(records);   
-      setTableData(arr); 
-      console.log(arr)  
-      // console.log(ref)
+      // setTableData(arr); 
+      // console.log(arr)  
     }
     getPersonalDetails()
   
@@ -173,8 +173,9 @@ export default function  Admin() {
         <input type="text" />
       </div> */}
         <div className="adminForm">
-
-
+        <Link to="/AdminNavTemplate">
+        <button className='otherBtn' >Main Menu</button>
+        </Link>
       <Table>
         <thead>
           <tr>
