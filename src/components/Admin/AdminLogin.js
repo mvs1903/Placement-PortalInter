@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 export default function AdminLogin() {
   return (
 
+    
       <div className="fullForm">
         <h3>Admin Portal Login : </h3>
         <label htmlFor="adminEmail" className='label' >Email :</label> <br />
