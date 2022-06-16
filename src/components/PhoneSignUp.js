@@ -55,7 +55,7 @@ const PhoneSignUp = () => {
         }
         console.log(number)
     };
-    return (
+  return (
     <>
 
     <div className="card">
