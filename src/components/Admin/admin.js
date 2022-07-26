@@ -12,6 +12,7 @@ import {
 import enteredSAP from '../Student/SapLogin';
 import AdminNav from './AdminNav'
 import { Link } from 'react-router-dom'
+import { async } from '@firebase/util'
 
 const filename = 'Csv-file';
 
@@ -38,10 +39,31 @@ const fields = {
             SEM6 : 'SEM6',
 }
 
+// const compFeilds =
+// {
+
+//   compName : 'compName',
+
+// }
+
 // const db = StartFirebase()
 
 export default function  Admin() {
 
+  const [compDetails, setCompDetails] = useState([])
+
+  const handleSelect=(e)=>{
+    console.log(e.target.value)
+  }
+  const handleFilter =async()=>{
+
+    const compDet =  await getDocs(collection(db,'CompDetails'))
+    let compRecord = compDet.docs.map((doc)=>({...doc.data(),id:doc.id}))
+    console.log(compRecord)
+    // const name = compRecord.where(compName==="TCS")
+    // console.log(name)
+    setCompDetails(compRecord)
+  }
   const [tableData, setTableData] = useState([]);
   const { saveAsCsv } = useJsonToCsv();
   const [selectedSapId, setselectedSapId] = useState(false)
@@ -71,45 +93,45 @@ export default function  Admin() {
     let fieldsKeyArr  = Object.keys(fields);
 
     fieldsKeyArr.forEach((val, index) => {
-      if(index == 0 && selectedSapId){
+      if(index === 0 && selectedSapId){
         newObj['SAPID'] = 'SAP_ID'
-      }else if(index == 1 && selectedFirstName){
+      }else if(index === 1 && selectedFirstName){
         newObj['firstName'] = 'First_Name'
-      }else if(index == 2 && selectedMiddleName){
+      }else if(index === 2 && selectedMiddleName){
         newObj['middleNname'] = 'Middle_Name'
-      }else if(index == 3 && selectedSurname){
+      }else if(index === 3 && selectedSurname){
         newObj['surname'] = 'Surname'
-      }else if(index == 4 && selectedMotherName){
+      }else if(index === 4 && selectedMotherName){
         newObj['motherName'] = 'Mother_Name'
-      }else if(index == 5 && selectedPhoneNo){
+      }else if(index === 5 && selectedPhoneNo){
         newObj['phoneNo'] = 'Phone_No'
-      }else if(index == 6 && selectedEmailId){
+      }else if(index === 6 && selectedEmailId){
         newObj['emailID'] = 'Email_ID'
-      }else if(index == 7 && selectedDOB){
+      }else if(index === 7 && selectedDOB){
         newObj['DOB'] = 'DOB'
-      }else if(index == 8 && selectedAddress){
+      }else if(index === 8 && selectedAddress){
         newObj['address'] = 'Address'
-      }else if(index == 9 && selectededucationGap){
+      }else if(index === 9 && selectededucationGap){
         newObj['educationGap'] = 'Education_Gap'
-      }else if(index == 10 && selectedTenthPercent){
+      }else if(index === 10 && selectedTenthPercent){
         newObj['tenthPercent'] = 'Tenth_Precent';
-      }else if(index == 11 && selectedTwelfthPercent){
+      }else if(index === 11 && selectedTwelfthPercent){
         newObj['twelfthPercent'] = 'Twelfth_Percent';
-      }else if(index == 12 && selectedJEE){
+      }else if(index === 12 && selectedJEE){
         newObj['JEE'] = 'JEE';
-      }else if(index == 13 && selectedCET){
+      }else if(index === 13 && selectedCET){
         newObj['CET'] = 'CET';
-      }else if(index == 14 && selectedSEM1){
+      }else if(index === 14 && selectedSEM1){
         newObj['SEM1'] = 'SEM1';
-      }else if(index == 15 && selectedSEM2){
+      }else if(index === 15 && selectedSEM2){
         newObj['SEM2'] = 'SEM2';
-      }else if(index == 16 && selectedSEM3){
+      }else if(index === 16 && selectedSEM3){
         newObj['SEM3'] = 'SEM3';
-      }else if(index == 17 && selectedSEM4){
+      }else if(index === 17 && selectedSEM4){
         newObj['SEM4'] = 'SEM4';
-      }else if(index == 18 && selectedSEM5){
+      }else if(index === 18 && selectedSEM5){
         newObj['SEM5'] = 'SEM5';
-      }else if(index == 19 && selectedSEM6){
+      }else if(index === 19 && selectedSEM6){
         newObj['SEM6'] = 'SEM6';
       }
     })
@@ -162,6 +184,7 @@ export default function  Admin() {
       // console.log(arr)  
     }
     getPersonalDetails()
+    handleFilter()
   
     
   }, [])
@@ -176,6 +199,15 @@ export default function  Admin() {
         <Link to="/AdminNavTemplate">
         <button className='otherBtn' >Main Menu</button>
         </Link>
+        <div>
+        <select id="dropdown" onChange = {handleSelect}>
+          {compDetails?.map((company)=>{
+            return(
+              <option value={company.id}>{company.compName}</option>
+            )
+          })}
+        </select>
+        </div>
       <Table>
         <thead>
           <tr>

@@ -1,31 +1,35 @@
 import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useUserAuth } from "../userAuthContext";
+import { useNavigate } from "react-router-dom";
+import {db} from "../firebaseConfig"
+import { doc, getDoc } from "firebase/firestore";
 
 const SapLogin = () => {
   const navigate = useNavigate();
-  // const { logIn } = useUserAuth();
   const [SAP, setSAP] = useState("");
   const [password, setPassword] = useState("");
-  // const [error, setError] = useState("");
+  
+  // const docRef = doc(db, "Details");
+  // var sap = docRef.get("SAPID");
+  // console.log(sap)
 
   const handleLogin = () => {
-    // setError("");
-    navigate("/PopUp");
-    // try {
-    //   // await logIn(SAP, password);
-    // } catch (err) {
-    //   setError(err.message);
-    // }
+    if((SAP === "")||(SAP === null)||(password==="")||(password===null)){
+      alert("Login ID or Password cannot be empty")
+    }
+    else{
+      navigate("/PopUp");
+    }
   };
 
   const handleSignUp = () => {
     navigate("/PhoneSignUp");
   };
+
+  // const
   return (
     <div>
-      <form action="">
-        <h3 id="phoneVeri">Student Portal :</h3>
+      <form action="" className="fullForm">
+        <h3 id="phoneVeri">STUDENT PORTAL :</h3>
         <label htmlFor="" className="label">
           Enter SAP ID :
         </label>{" "}
@@ -51,16 +55,10 @@ const SapLogin = () => {
         />{" "}
         <br />
         <br />
-        <Link to="/PopUp">
           <button className="login" onClick={handleLogin}>
             Login
           </button>
-        </Link>
-        <br />
-        <Link to="/PhoneSignUp">New User? Signup</Link>
-        {/* <Link to="/PhoneSignUp"> */}
-        {/* <button className="otherBtn" onClick={handleSignUp} >Signup</button> */}
-        {/* </Link> */}
+          <button className="otherBtn" onClick={handleSignUp}>Signup</button>
         <div id="recaptcha-container" />
       </form>
     </div>

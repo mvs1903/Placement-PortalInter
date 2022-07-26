@@ -1,27 +1,24 @@
-import { doc, updateDoc , getDocs ,collection,getDoc } from "firebase/firestore";
+import { doc, updateDoc , getDocs ,collection } from "firebase/firestore";
 import React, {useState,useEffect} from "react";
-import { Link, useNavigate ,useParams} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import {compName} from "../Admin/Notification";
 import { db } from "../firebaseConfig";
 import { useUserAuth } from "../userAuthContext";
 export default function () {
 
-  const { id } = useParams();
-
-  const [notificaton, setNotification] = useState([]);
-  const [details,setDetails]=useState({});
-
-    const [enteredSAP, setEnteredSAP] = useState(0)
+  const [notification, setNotification] = useState([]);
+  // const [enteredSAP, setEnteredSAP] = useState("")
+  const [compDetails, setCompDetails] = useState([])
   const handleSubmit = async (e) => {
-    console.log(enteredSAP);
-    
-    // e.preventDefault()
+
+    e.preventDefault()
     // db.connection("Compny")
     // const Compnydoc = doc(db,"Compny","TCS")
     // const newRef = firebase.firestore("Details/"+"6003200176")
     // await  updateDoc(Compnydoc,newRef)
     // alert("You have Successfully Registered !");
 
+    console.log(notification)
   };
   const { logOut, user } = useUserAuth();
   const navigate = useNavigate();
@@ -41,10 +38,7 @@ export default function () {
 
   const handleClick = async () => {
     // alert("You have successfully registered");
-
-    // setDoc(doc(db,`${details['compName']}`,))
     navigate("/Otp");
-
     
   };
 
@@ -52,18 +46,17 @@ export default function () {
 
     
     const getCompDetails = async() =>{
-
         
-      let details1 =  await (await getDoc(doc(db,'CompDetails',id))).data()
-      // let records = details.docs.map((doc)=>({...doc.data(),id:doc.id}))
-      setDetails(details1);
-
-
-      // setNotification(records)
-      console.log(details)
-
+      const details =  await getDocs(collection(db,'CompDetails'))
+      let records = details.docs.map((doc)=>({...doc.data(),id:doc.id}))
+      setNotification(records)
+      console.log(records)
+         
+      setCompDetails(records)
     }
     getCompDetails()
+    console.log("first")
+    console.log(compDetails)
   }, [])
   return (
     <>
@@ -71,22 +64,27 @@ export default function () {
         <button className="reset" onClick={handleLogout}>
           Log out
         </button>
-        <form onSubmit={()=>{}}>
-          {/* <Notification/> */}
-          <h3 id="phoneVeri">
-            {" "}
-            {details['compName']} is coming for interview do you want to Register ?
-            
-          </h3>
-          <br />
-          <input type="number" className="labelIn" value={enteredSAP} onChange={(val)=>{
-            // console.log(val.target.value);
-            setEnteredSAP(val.target.value)}}/> <br />
-          <input type={'button'}  className="login" onClick={handleSubmit} value={"Interested"} />
-          <button className="reset" onClick={handleNotInterested} >
-            Not Interested
-          </button>
-        </form>
+        {compDetails?.map((company)=>{
+
+          return(
+              <form onSubmit={handleSubmit} className="formNoti">
+              {/* <Notification/> */}
+              <h3 id="phoneVeri">
+              {" "}
+              {company.compName} is coming for interview on {company.visitDate} at {company.reportTime} do you want to Register ?
+              
+              </h3>
+              <br />
+              <input type="number" className="labelIn" /> <br />
+              <button type="submit" className="login" onClick={handleClick}>
+              Interested
+              </button>
+              <button type="submit" className="reset" onClick={handleNotInterested} >
+              Not Interested
+              </button>
+              </form>
+          )
+        })}
       </div>
     </>
   );

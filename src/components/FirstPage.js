@@ -12,7 +12,7 @@ const FirstPage = () => {
       navigate("AdminLogin")
     }
   return (
-    <div className="fullForm">
+    <div className="fullFormFirst">
       {/* <Link to="/AdminLogin"> */}
         <button className="otherBtn"onClick={handleAdmin} >Are you Admin?</button>
       {/* </Link> */}

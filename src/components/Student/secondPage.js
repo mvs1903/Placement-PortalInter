@@ -150,10 +150,16 @@ export default function SecondPage() {
   };
 
   const handleClick = async (e) => {
-    try {
-      const details = collection(db, "Details");
-      await setDoc(doc(db, "PerDetails", SAPID), {
-        SAPID: Number(SAPID),
+
+
+    if((SAPID === "")||(firstName==="")||(middleName==="")||(surname==="")||(motherName==="")||(phoneNo==="")||(emailID==="")||(DOB==="")||(address==="")||(password==="")||(educationGap==="")||(tenthPercent==="")||(twelfthPercent==="")||(JEE==="")||(CET==="")||(SEM1==="")||(SEM2==="")||(SEM3==="")||(SEM4==="")||(SEM5==="")||(SEM6==="")){
+      alert("Feilds cannot be empty")
+    }
+    else{
+      try {
+        const details = collection(db, "PerDetails");
+        await setDoc(doc(db, "PerDetails", SAPID), {
+          SAPID: Number(SAPID),
         firstName: firstName,
         middleNname: middleName,
         surname: surname,
@@ -178,16 +184,15 @@ export default function SecondPage() {
       });
       //   });
       console.log("Input entered");
+      console.log("y")
     } catch (error) {
       console.log(error.message);
-
-      alert("Form Submitted Successfuly");
-
-      navigate("/SapLogin");
+    }
+    
+    alert("Form Submitted Successfuly");
+    navigate("/SapLogin");
     }
   };
-
-  const [toggle, setToggle] = useState(false);
   return (
     <>
       <br />
