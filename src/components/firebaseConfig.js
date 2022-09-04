@@ -1,8 +1,8 @@
 
-import {initializeApp} from 'firebase/app'
-import {getFirestore}from 'firebase/firestore'
-import {getAuth} from "firebase/auth"
-import { getDatabase } from 'firebase/database';
+// import {initializeApp} from 'firebase/app'
+// import {getFirestore}from 'firebase/firestore'
+// import {getAuth} from "firebase/auth"
+// import { getDatabase } from 'firebase/database';
 
 // function StartFirebase(){
 
@@ -16,23 +16,23 @@ import { getDatabase } from 'firebase/database';
   //   measurementId: "G-SN9S4BB2Y0"
   // };
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCBgKI1-dxSdVf1I0vVGAUuhZ4C4xrQdBc",
-    authDomain: "djsce-pp1.firebaseapp.com",
-    projectId: "djsce-pp1",
-    storageBucket: "djsce-pp1.appspot.com",
-    messagingSenderId: "544701194222",
-    appId: "1:544701194222:web:2e48a5dcf41ee3b87878ff",
-    measurementId: "G-W1XHNFM2BG"
-  };
-  const app = initializeApp(firebaseConfig)
+//   const firebaseConfig = {
+//     apiKey: "AIzaSyCBgKI1-dxSdVf1I0vVGAUuhZ4C4xrQdBc",
+//     authDomain: "djsce-pp1.firebaseapp.com",
+//     projectId: "djsce-pp1",
+//     storageBucket: "djsce-pp1.appspot.com",
+//     messagingSenderId: "544701194222",
+//     appId: "1:544701194222:web:2e48a5dcf41ee3b87878ff",
+//     measurementId: "G-W1XHNFM2BG"
+//   };
+//   const app = initializeApp(firebaseConfig)
 
-  // return getDatabase(app)
+//   // return getDatabase(app)
   
-// }
-  export const db = getFirestore(app)
-  // export const db = getDatabase(app)
-  export const auth = getAuth(app)
-  // export default StartFirebase
+// // }
+//   export const db = getFirestore(app)
+//   // export const db = getDatabase(app)
+//   export const auth = getAuth(app)
+//   // export default StartFirebase
 
   

@@ -13,6 +13,7 @@ import PopUp from "./components/Student/PopUp";
 import Notification from "./components/Admin/Notification";
 import AdminNavTemplate from "./components/Admin/AdminNavTemplate";
 import FirstPage from "./components/FirstPage";
+import ExcelR from './components/excelpage';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       <Navbar />
       <Routes>
         {/* <Route path="/" element={<HomePage />} /> */}
-        <Route path="/" element={<FirstPage />} />
+        <Route path="/" element={<ExcelR/>} />
         <Route path="/SapLogin" element={<SapLogin />} />
         <Route path="/PhoneSignUp" element={<PhoneSignUp />} />
         <Route path="/Otp" element={<Otp />} />

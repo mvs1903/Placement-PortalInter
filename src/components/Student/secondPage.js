@@ -3,8 +3,10 @@ import { db } from "../firebaseConfig";
 import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { Get_data } from "../firebasenew";
 
-export default function SecondPage() {
+export default  function SecondPage() {
+  // 
   const [SAPID, setSAPID] = useState(0);
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
@@ -39,8 +41,30 @@ export default function SecondPage() {
 
   // }
 
+  const get_sap_data =async (sap) =>{
+    if (sap==undefined){
+      return;
+    }
+    let sapid=sap.toString();
+    if (sapid.length==11){
+      let x= await Get_data(sapid);
+      console.log(x);
+      setFirstName(x["First Name"]);
+      setMiddleName(x["Father's First Name"]);
+      setSEM1(x["Semester 1 CGPA"]);
+      setSEM2(x["Semester 2 CGPA"]);
+      setSEM3(x["Semester 3 CGPA"]);
+      setSEM4(x["Semester 4 CGPA"]);
+      setSEM5(x["Semester 5 CGPA"]);
+      
+    }
+  }
+
+  
   const handleSAPID = (e) => {
+    get_sap_data(e.target.value);
     setSAPID(e.target.value);
+    
   };
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
