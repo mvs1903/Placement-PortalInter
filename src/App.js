@@ -20,7 +20,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        {/* <Route path="/" element={<HomePage />} /> */}
+        {/* <Route path="/" element={<SecondPage />} /> */}
         <Route path="/" element={<ExcelR/>} />
         <Route path="/SapLogin" element={<SapLogin />} />
         <Route path="/PhoneSignUp" element={<PhoneSignUp />} />
