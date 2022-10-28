@@ -32,6 +32,9 @@ const Notification = () => {
         visitDate: visitDate,
         reportTime: reportTime,
       });
+      let message= `${compName} is coming for placement on ${visitDate} ,interested students please make note, the reporting time is ${reportTime}. For more details visit college placement portal. `;
+
+      console.log(message);
       //   });
       console.log("Input entered");
     } catch (error) {

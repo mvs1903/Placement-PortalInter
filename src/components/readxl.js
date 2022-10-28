@@ -5,7 +5,7 @@ import {read,utils} from 'xlsx/xlsx.mjs';
 
 import push_data from './firebasenew';
 function GetTableFromExcel(data) {
- ExcelToJSON(data);
+  ExcelToJSON(data);
  //Read the Excel File data in binary
  // var workbook = read(data);
 
