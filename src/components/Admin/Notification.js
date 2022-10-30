@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { db } from "../firebaseConfig";
 import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+import { send_email } from "../../utilities/email_sender";
 
 const Notification = () => {
   const navigate = useNavigate();
@@ -26,16 +27,19 @@ const Notification = () => {
   const handleSubmit = async () => {
     console.log("yo");
     try {
-      const compDetails = collection(db, "CompDetails");
-      await setDoc(doc(db, "CompDetails", compName), {
+      // const compDetails = collection(db, "CompDetails");
+      let doc=await addDoc(collection(db, "CompDetails"), {
         compName: compName,
         visitDate: visitDate,
         reportTime: reportTime,
       });
-      let message= `${compName} is coming for placement on ${visitDate} ,interested students please make note, the reporting time is ${reportTime}. For more details visit college placement portal. `;
+      let link=`http://localhost:3000/PopUp/${doc.id}`
+      console.log(link)
+      let message= `${compName} is coming for placement on ${visitDate} ,interested students please make note, the reporting time is ${reportTime}. For more details visit ${link} . `;
 
       console.log(message);
-      //   });
+      send_email("tkdazzles28@gmail.com",` ${compName} coming for the interview`,message)
+      //  });
       console.log("Input entered");
     } catch (error) {
       console.log(error.message);

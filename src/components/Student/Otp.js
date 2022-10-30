@@ -32,7 +32,21 @@ const PhoneSignUp = () => {
         try {
             await confirmObj.confirm(otp)
             alert("You have been succesfully registered!")
+
             navigate("/PopUp")
+
+            // Send data to the backend via POST
+    fetch('http://localhost:5100/api/email', {  // Enter your IP address here
+
+    method: 'POST', 
+    mode: 'cors', 
+    body: JSON.stringify({
+        "email":"mvs81349@gmail.com",
+        "sub":"Hello",
+        "text":"Thank you ;)"
+      }) // body data type must match "Content-Type" header
+
+    });
         }
         catch(err){
             seterror(err.message)
@@ -53,7 +67,7 @@ const PhoneSignUp = () => {
         }
         console.log(number)
     };
-  return (
+    return (
     <>
 
     <div className="card">

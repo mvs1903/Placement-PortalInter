@@ -26,7 +26,7 @@ function App() {
         <Route path="/Otp" element={<Otp />} />
         <Route path="/secondPage" element={<SecondPage />} />
         <Route path="/secondPage" element={<SecondPage />} />
-        <Route path="/PopUp" element={<PopUp />} />
+        <Route path="/PopUp/:id" element={<PopUp />} />
         <Route path="/adminLogin" element={<AdminLogin />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/Notification" element={<Notification />} />
