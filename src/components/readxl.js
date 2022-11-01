@@ -34,7 +34,7 @@ var ExcelToJSON = function(file) {
         var json_object = JSON.stringify(XL_row_object);
         for(var i=0;i<XL_row_object.length;i++){
          // console.log(XL_row_object[i]["SAPID"]);
-         push_data(XL_row_object[i],XL_row_object[i]["SAPID"].toString());
+          push_data(XL_row_object[i],XL_row_object[i]["SAP ID"].toString());
         }
         
 

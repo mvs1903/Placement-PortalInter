@@ -34,6 +34,7 @@ export default function SecondPage() {
      const [SEM5, setSEM5] = useState(0)
      const [SEM6, setSEM6] = useState(0)
 
+     
 
 // const [data,setData] = useState({
 //      "sapId":"",

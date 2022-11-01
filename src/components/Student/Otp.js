@@ -5,8 +5,9 @@ import { useUserAuth } from '../userAuthContext'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { async } from '@firebase/util'
+import { send_email } from '../../utilities/email_sender'
 
-const PhoneSignUp = () => {
+const PhoneSignUp = (props) => {
 
     const navigate = useNavigate()
     const [number, setNumber] = useState("")
@@ -32,6 +33,7 @@ const PhoneSignUp = () => {
         try {
             await confirmObj.confirm(otp)
             alert("You have been succesfully registered!")
+            send_email("muskaansharma81349@gmail.com","Successfully regestered!",`You have successfully registered!`);
 
             navigate("/PopUp")
 

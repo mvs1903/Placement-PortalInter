@@ -38,7 +38,7 @@ const Notification = () => {
       let message= `${compName} is coming for placement on ${visitDate} ,interested students please make note, the reporting time is ${reportTime}. For more details visit ${link} . `;
 
       console.log(message);
-      send_email("tkdazzles28@gmail.com",` ${compName} coming for the interview`,message)
+      send_email("muskaansharma81349@gmail.com",` ${compName} coming for the interview`,message)
       //  });
       console.log("Input entered");
     } catch (error) {

@@ -5,28 +5,30 @@ import {getAuth} from "firebase/auth"
 import { getDatabase } from 'firebase/database';
 
 import { doc, setDoc } from "firebase/firestore"; 
+import { db } from './firebaseConfig';
 
 
-const firebaseConfig = {
- apiKey: "AIzaSyD9VnU4mU2uBJNzMSQrOsylss4_ZX-1Etc",
- authDomain: "placementproj.firebaseapp.com",
- databaseURL: "https://placementproj-default-rtdb.firebaseio.com",
- projectId: "placementproj",
- storageBucket: "placementproj.appspot.com",
- messagingSenderId: "57199764219",
- appId: "1:57199764219:web:35c33447669ad5ecb1c65e"
-};
+// const firebaseConfig = {
+//  apiKey: "AIzaSyD9VnU4mU2uBJNzMSQrOsylss4_ZX-1Etc",
+//  authDomain: "placementproj.firebaseapp.com",
+//  databaseURL: "https://placementproj-default-rtdb.firebaseio.com",
+//  projectId: "placementproj",
+//  storageBucket: "placementproj.appspot.com",
+//  messagingSenderId: "57199764219",
+//  appId: "1:57199764219:web:35c33447669ad5ecb1c65e"
+// };
 
-const app = initializeApp(firebaseConfig)
+// const app = initializeApp(firebaseConfig)
 
-// return getDatabase(app) 
+// // return getDatabase(app) 
 
-// }
-const db = getFirestore(app)
-// export const db = getDatabase(app)
-const auth = getAuth(app)
+// // }
+// const db = getFirestore(app)
+// // export const db = getDatabase(app)
+// const auth = getAuth(app)
 
 async function push_data (data,key){
+  console.log(`${db.app} ${key}` )
 
   // const firebaseConfig = {
   //   apiKey: "AIzaSyAhF3hNDNlJt04tydJj5mzNqiw0MPswDw4",
@@ -42,7 +44,7 @@ async function push_data (data,key){
   // export default StartFirebase
 
 // Add a new document in collection "cities"
-await setDoc(doc(db, "cities", key), data);
+await setDoc(doc(db, "Details", key), data);
 }
 export default push_data;
 
