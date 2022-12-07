@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { db } from "../firebaseConfig";
-import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc, getDocs } from "firebase/firestore";
 import { send_email } from "../../utilities/email_sender";
 
 const Notification = () => {
@@ -38,7 +38,11 @@ const Notification = () => {
       let message= `${compName} is coming for placement on ${visitDate} ,interested students please make note, the reporting time is ${reportTime}. For more details visit ${link} . `;
 
       console.log(message);
-      send_email("muskaansharma81349@gmail.com",` ${compName} coming for the interview`,message)
+      
+      const details =  await getDocs(collection(db,'PerDetails'))
+      let records = details.docs.map((doc)=>(doc.data()["emailID"]))
+      console.log(records);
+      send_email(records,` ${compName} coming for the interview`,message)
       //  });
       console.log("Input entered");
     } catch (error) {
