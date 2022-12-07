@@ -140,8 +140,8 @@ const handleClick = async (e) => {
                const details = collection(db , 'Details')
 await setDoc(doc(db, "Details", SAPID), {
           SAPID : Number(SAPID),
-      firstName: firstName,
-      middleNname : middleName,
+     firstName: firstName,
+     middleNname : middleName,
      surname : surname,
      motherName : motherName,
      phoneNo : Number(phoneNo),
