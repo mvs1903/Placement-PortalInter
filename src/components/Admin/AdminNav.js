@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const AdminNav = () => {
   return (
-    <div className="fullForm">
+    <div className="adminForm">
       <Link to="/Notification">
         <button className="otherBtn"> Post Notification</button>
       </Link>

@@ -1,92 +1,120 @@
-import { doc, updateDoc , getDocs ,collection,getDoc } from "firebase/firestore";
-import React, {useState,useEffect} from "react";
-import { Link, useNavigate ,useParams} from "react-router-dom";
+import { async } from "@firebase/util";
+import {
+  setDoc,
+  doc,
+  updateDoc,
+  getDocs,
+  getDoc,
+  collection,
+} from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import context from "react-bootstrap/esm/AccordionContext";
+import { Link, useNavigate } from "react-router-dom";
 // import {compName} from "../Admin/Notification";
 import { db } from "../firebaseConfig";
 import { useUserAuth } from "../userAuthContext";
 export default function () {
-
-  const { id } = useParams();
-
-  const [notificaton, setNotification] = useState([]);
-  const [details,setDetails]=useState({});
-
-    const [enteredSAP, setEnteredSAP] = useState(0)
+  const [notification, setNotification] = useState([]);
+  const [enteredSAP, setEnteredSAP] = useState("");
+  const [compDetails, setCompDetails] = useState([]);
   const handleSubmit = async (e) => {
-    console.log(enteredSAP);
-    
-    // e.preventDefault()
+    e.preventDefault();
     // db.connection("Compny")
     // const Compnydoc = doc(db,"Compny","TCS")
     // const newRef = firebase.firestore("Details/"+"6003200176")
     // await  updateDoc(Compnydoc,newRef)
     // alert("You have Successfully Registered !");
 
+    console.log(notification);
   };
   const { logOut, user } = useUserAuth();
   const navigate = useNavigate();
 
-  const handleNotInterested = async () => {
-    try {
-      // await logOut();
-    } catch (error) {
-      console.log(error.message);
-    }
-    alert("Your response have been succesfully recorded!")
-    // navigate("/");
+  // const handleNotInterested = async () => {
+  //   try {
+  //     // await logOut();
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  //   alert("Your response have been succesfully recorded!");
+  //   // navigate("/");
+  // };
+  const handleLogout = () => {
+    navigate("/");
   };
-  const handleLogout = ()=>{
-    navigate("/")
-  }
 
-  const handleClick = async () => {
-    // alert("You have successfully registered");
+  const handleInterested = async (e) => {
+    console.log(e);
+    const details = doc(db, "CompDetails", e, "Interested", enteredSAP);
+    const dt = await getDoc(doc(db, "PerDetails", enteredSAP));
+    const detail = await setDoc(details, dt.data());
+    console.log(detail);
+    console.log(details);
 
-    // setDoc(doc(db,`${details['compName']}`,))
     navigate("/Otp");
-
-    
   };
 
+  const handleEnteredSAP = async (e) => {
+    setEnteredSAP(e.target.value);
+    console.log(e);
+  };
   useEffect(() => {
+    const getCompDetails = async () => {
+      const details = await getDocs(collection(db, "CompDetails"));
+      let records = details.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      setNotification(records);
+      console.log(records);
 
-    
-    const getCompDetails = async() =>{
-
-        
-      let details1 =  await (await getDoc(doc(db,'CompDetails',id))).data()
-      // let records = details.docs.map((doc)=>({...doc.data(),id:doc.id}))
-      setDetails(details1);
-
-
-      // setNotification(records)
-      console.log(details)
-
-    }
-    getCompDetails()
-  }, [])
+      setCompDetails(records);
+    };
+    getCompDetails();
+    console.log("first");
+    console.log(compDetails);
+  }, []);
   return (
     <>
       <div>
+        {/* <h3>{SAP}</h3> */}
         <button className="reset" onClick={handleLogout}>
           Log out
         </button>
-        <form onSubmit={()=>{}}>
-          {/* <Notification/> */}
-          <h3 id="phoneVeri">
-            {" "}
-            {details['compName']} is coming for interview do you want to Register ?
-            
-          </h3>
-          <br />
-          <input type="number" className="labelIn" value={enteredSAP} onChange={(val)=>{
-            // console.log(val.target.value);
-            setEnteredSAP(val.target.value)}}/> <br />
-          <input type={'button'}  className="login" onClick={handleSubmit} value={"Interested"} />
-          <button className="reset" onClick={handleNotInterested} >
-            Not Interested
-          </button>
-        </form>
+        <h3>Enter SAPID</h3>
+        <input
+          onChange={handleEnteredSAP}
+          value={enteredSAP}
+          type="number"
+          className="labelIn"
+        />{" "}
+        <br />
+        {compDetails?.map((company) => {
+          return (
+            <form onSubmit={handleSubmit} className="formNoti">
+              {/* <Notification/> */}
+              <h3 id="phoneVeri">
+                {" "}
+                {company.compName} is coming for interview on{" "}
+                {company.visitDate} at {company.reportTime} do you want to
+                Register ?
+              </h3>
+              <br />
+
+              <button
+                type="submit"
+                className="login"
+                onClick={() => handleInterested(company.id)}
+              >
+                Interested
+              </button>
+              {/* <button
+                type="submit"
+                className="reset"
+                onClick={handleNotInterested}
+              >
+                Not Interested
+              </button> */}
+            </form>
+          );
+        })}
       </div>
     </>
   );

@@ -1,31 +1,66 @@
 import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useUserAuth } from "../userAuthContext";
+import { useNavigate } from "react-router-dom";
+import {db} from "../firebaseConfig"
+import { doc, getDoc , collection } from "firebase/firestore";
+import {authentication} from "../firebaseConfig"
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const SapLogin = () => {
   const navigate = useNavigate();
-  // const { logIn } = useUserAuth();
   const [SAP, setSAP] = useState("");
   const [password, setPassword] = useState("");
-  // const [error, setError] = useState("");
+  
+  // const provider = provider.setCustomParameters({
+  //   'login_hint': 'user@example.com'
+  // });
 
-  const handleLogin = () => {
-    // setError("");
-    navigate("/PopUp");
-    // try {
-    //   // await logIn(SAP, password);
-    // } catch (err) {
-    //   setError(err.message);
-    // }
-  };
+  // const handleGoogle = async (e)=>{
+  //   e.preventDefault();
+  //   console.log("entered handleGoogle")
+  //   const provider = new GoogleAuthProvider();
+  //   await signInWithPopup(authentication,provider)
+  //   .then((re)=>{
+  //     navigate("/PopUp")
+  //     console.log(re)
+  //   })
+  //   .catch((err)=>{
+  //     console.log(err)
+  //   })
+  // }
+  
+  const handleLogin = async(e) => {
+    e.preventDefault();
+    if((SAP === "")||(SAP === null)||(password==="")||(password===null)){
+      alert("Login ID or Password cannot be empty")
+      return;
+    }
+    const detail =  await getDoc(doc(db,'PerDetails' ,SAP))
+
+    // let recordSAP = details.docs.map((doc)=>(doc.data()["SAPID"]))
+    // let recordPass = details.docs.map((doc)=>(doc.data()["password"]))
+
+    console.log(detail.data())
+
+    if(password === detail.data().password){
+          alert("Login Successful")
+          navigate("/PopUp");
+    }
+    else{
+
+      alert("Login ID or Password doesn't match")
+    }
+
+ };
 
   const handleSignUp = () => {
     navigate("/PhoneSignUp");
   };
+
+  // const
   return (
     <div>
-      <form action="">
-        <h3 id="phoneVeri">Student Portal :</h3>
+      <form action="" className="fullForm">
+        <h3 id="phoneVeri">STUDENT PORTAL :</h3>
         <label htmlFor="" className="label">
           Enter SAP ID :
         </label>{" "}
@@ -51,20 +86,19 @@ const SapLogin = () => {
         />{" "}
         <br />
         <br />
-        <Link to="/PopUp">
           <button className="login" onClick={handleLogin}>
             Login
           </button>
-        </Link>
-        <br />
-        <Link to="/PhoneSignUp">New User? Signup</Link>
-        {/* <Link to="/PhoneSignUp"> */}
-        {/* <button className="otherBtn" onClick={handleSignUp} >Signup</button> */}
-        {/* </Link> */}
+          {/* <button className="login" onClick={handleGoogle}>
+            Google
+          </button> */}
+
+          <button className="otherBtn" onClick={handleSignUp}>Signup</button>
         <div id="recaptcha-container" />
       </form>
     </div>
   );
 };
 
-export default SapLogin;
+export default SapLogin ;
+// export {SAP};

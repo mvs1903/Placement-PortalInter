@@ -33,6 +33,8 @@ import { getDatabase } from 'firebase/database';
   export const db = getFirestore(app)
   // export const db = getDatabase(app)
   export const auth = getAuth(app)
+
+  export const authentication = getAuth(app);
   // export default StartFirebase
 
   

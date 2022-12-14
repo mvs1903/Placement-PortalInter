@@ -42,7 +42,7 @@ export default function SecondPage() {
   const handleSAPID = async (e) => {
     setSAPID(e.target.value);
     if (e.target.value.toString()!=""){
-
+      console.log(e.target.value)
       const details =  await getDoc(doc(collection(db,'Details'),e.target.value.toString()))
     // // let records = details.docs.map((doc)=>(doc.data()))
     
@@ -68,8 +68,6 @@ export default function SecondPage() {
         setSEM4(details.data()["Semester 4 CGPA"]);
         setSEM5(details.data()["Semester 5 CGPA"]);
         setSEM6(details.data()["Semester 6 CGPA"]);
-
-  
       };
     };
     
@@ -150,10 +148,16 @@ export default function SecondPage() {
   };
 
   const handleClick = async (e) => {
-    try {
-      const details = collection(db, "Details");
-      await setDoc(doc(db, "PerDetails", SAPID), {
-        SAPID: Number(SAPID),
+
+
+    if((SAPID === "")||(firstName==="")||(middleName==="")||(surname==="")||(motherName==="")||(phoneNo==="")||(emailID==="")||(DOB==="")||(address==="")||(password==="")||(educationGap==="")||(tenthPercent==="")||(twelfthPercent==="")||(JEE==="")||(CET==="")||(SEM1==="")||(SEM2==="")||(SEM3==="")||(SEM4==="")||(SEM5==="")||(SEM6==="")){
+      alert("Feilds cannot be empty")
+    }
+    else{
+      try {
+        const details = collection(db, "PerDetails");
+        await setDoc(doc(db, "PerDetails", SAPID), {
+          SAPID: Number(SAPID),
         firstName: firstName,
         middleNname: middleName,
         surname: surname,
@@ -178,16 +182,15 @@ export default function SecondPage() {
       });
       //   });
       console.log("Input entered");
+      console.log("y")
     } catch (error) {
       console.log(error.message);
-
-      alert("Form Submitted Successfuly");
-
-      navigate("/SapLogin");
+    }
+    
+    alert("Form Submitted Successfuly");
+    navigate("/SapLogin");
     }
   };
-
-  const [toggle, setToggle] = useState(false);
   return (
     <>
       <br />

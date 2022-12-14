@@ -2,13 +2,15 @@
 *{
     font-family: sans-serif;
     font-weight: bold;
+    /* background-color: white; */
 }
 
 
 .navbar{
     background-color: white;
     display: grid;
-    box-shadow: 4px 4px 10px rgb(20, 24, 33);
+    /* width: auto; */
+    /* box-shadow: 4px 4px 10px rgb(20, 24, 33); */
     border-radius: 5px;
     border: 0px solid rgb(20, 24, 33) ;
 }
@@ -66,16 +68,28 @@
     border-radius: 20px;
     background-color: rgb(245, 245, 245);
     color: rgb(37, 70, 133);
-    border: 2px solid rgb(20, 38, 72) ;
-    box-shadow: 4px 4px 10px rgb(20, 24, 33);
+    /* border: 2px solid rgb(20, 38, 72) ; */
+    /* box-shadow: 4px 4px 10px rgb(20, 24, 33); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.fullFormFirst{
+    text-align: center;
+    margin: 60px 80px;
+    padding: 60px 80px;
+    border-radius: 20px;
+    background-color: rgb(245, 245, 245);
+    color: rgb(37, 70, 133);
+    /* border: 2px solid rgb(20, 38, 72) ; */
+    /* box-shadow: 4px 4px 10px rgb(20, 24, 33); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #phoneVeri{
     text-align: left;
-    font-size: 40px;
-    margin: 40px 40px;
+    font-size: 30px;
+    /* margin: 40px 40px; */
 }
-
+/* 
 form{
     text-align: center;
     background-color: rgb(245, 245, 245);
@@ -84,7 +98,19 @@ form{
     margin: 120px 80px;
     padding: 120px 80px;
     border: 2px solid rgb(20, 38, 72) ;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     box-shadow: 4px 4px 10px rgb(20, 24, 33);
+} */
+.formNoti{
+    text-align: center;
+    background-color: rgb(245, 245, 245);
+    color: rgb(37, 70, 133);
+    border-radius: 20px;
+    margin: 20px 10px;
+    padding: 10px 10px;
+    /* border: 2px solid rgb(20, 38, 72) ; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 4px 4px 10px rgb(20, 24, 33); */
 }
 
 .formH3{
@@ -124,7 +150,7 @@ form{
     text-decoration: none;
 }
 
-.otherBbtn:hover{
+.otherBtn:hover{
     background-color: rgb(51, 87, 112);
 }
 
@@ -161,4 +187,29 @@ Table{
 Table thead{
 
     background-color: rgb(240, 240, 240);
+}
+
+#dropdown{
+    /* display: flex; */
+    margin-top: -50px;
+    float: right;
+    padding: 10px 70px;
+    border-radius: 10px;
+    background-color: rgb(245, 245, 245);
+    color: rgb(66, 115, 150);
+}
+#dropdown-cgpa{
+    /* display: flex; */
+    margin-top: -20px;
+    float: left;
+    padding: 10px 70px;
+    border-radius: 10px;
+    background-color: rgb(245, 245, 245);
+    color: rgb(66, 115, 150);
+}
+
+.adminForm{
+
+    text-align: center;
+    justify-items: bottom;
 }

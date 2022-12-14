@@ -2,7 +2,6 @@ import React , {useState} from 'react'
 import {Link, useNavigate} from "react-router-dom"
 import { useUserAuth } from '../userAuthContext'
 
-
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { async } from '@firebase/util'
@@ -56,7 +55,7 @@ const PhoneSignUp = () => {
   return (
     <>
 
-    <div className="card">
+    <div className="fullForm">
         {error && alert(error)}
         <form onSubmit={getOtp} style={{display :!flag ? "block" : "none"}}>
         <h3 id ="phoneVeri" >Phone Verification :</h3>
