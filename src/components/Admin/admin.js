@@ -164,7 +164,6 @@ export default function Admin() {
   };
 
   useEffect(() => {
-<<<<<<< HEAD
 
     
     const getPersonalDetails = async() =>{
@@ -172,15 +171,6 @@ export default function Admin() {
       const details =  await getDocs(collection(db,'PerDetails'))
       let records = details.docs.map((doc)=>({...doc.data(),id:enteredSAP}))
       setTableData(records);   
-=======
-    const getPersonalDetails = async () => {
-      const details = await getDocs(collection(db, "PerDetails"));
-      let records = details.docs.map((doc) => ({
-        ...doc.data(),
-        id: enteredSAP,
-      }));
-      setTableData(records);
->>>>>>> 9149e3d (filtering done)
 
       // const details =  await getDocs(collection(db,'Company'))
       // let arr = []

@@ -30,16 +30,6 @@ export default function () {
   const { logOut, user } = useUserAuth();
   const navigate = useNavigate();
 
-<<<<<<< HEAD
-  const handleNotInterested = async () => {
-    try {
-      // await logOut();
-    } catch (error) {
-      console.log(error.message);
-    }
-    alert("Your response have been succesfully recorded!")
-    // navigate("/");
-=======
   // const handleNotInterested = async () => {
   //   try {
   //     // await logOut();
@@ -51,7 +41,6 @@ export default function () {
   // };
   const handleLogout = () => {
     navigate("/");
->>>>>>> 9149e3d (filtering done)
   };
 
   const handleInterested = async (e) => {

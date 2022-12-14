@@ -42,7 +42,7 @@ export default function SecondPage() {
   const handleSAPID = async (e) => {
     setSAPID(e.target.value);
     if (e.target.value.toString()!=""){
-
+      console.log(e.target.value)
       const details =  await getDoc(doc(collection(db,'Details'),e.target.value.toString()))
     // // let records = details.docs.map((doc)=>(doc.data()))
     
@@ -68,8 +68,6 @@ export default function SecondPage() {
         setSEM4(details.data()["Semester 4 CGPA"]);
         setSEM5(details.data()["Semester 5 CGPA"]);
         setSEM6(details.data()["Semester 6 CGPA"]);
-
-  
       };
     };
     
