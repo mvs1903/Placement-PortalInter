@@ -152,7 +152,7 @@ export default function SecondPage() {
   const handleClick = async (e) => {
     try {
       const details = collection(db, "Details");
-      await setDoc(doc(db, "Details", SAPID), {
+      await setDoc(doc(db, "PerDetails", SAPID), {
         SAPID: Number(SAPID),
         firstName: firstName,
         middleNname: middleName,
