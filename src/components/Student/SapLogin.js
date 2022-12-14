@@ -1,25 +1,56 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {db} from "../firebaseConfig"
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc , collection } from "firebase/firestore";
+import {authentication} from "../firebaseConfig"
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const SapLogin = () => {
   const navigate = useNavigate();
   const [SAP, setSAP] = useState("");
   const [password, setPassword] = useState("");
   
-  // const docRef = doc(db, "Details");
-  // var sap = docRef.get("SAPID");
-  // console.log(sap)
+  // const provider = provider.setCustomParameters({
+  //   'login_hint': 'user@example.com'
+  // });
 
-  const handleLogin = () => {
+  // const handleGoogle = async (e)=>{
+  //   e.preventDefault();
+  //   console.log("entered handleGoogle")
+  //   const provider = new GoogleAuthProvider();
+  //   await signInWithPopup(authentication,provider)
+  //   .then((re)=>{
+  //     navigate("/PopUp")
+  //     console.log(re)
+  //   })
+  //   .catch((err)=>{
+  //     console.log(err)
+  //   })
+  // }
+  
+  const handleLogin = async(e) => {
+    e.preventDefault();
     if((SAP === "")||(SAP === null)||(password==="")||(password===null)){
       alert("Login ID or Password cannot be empty")
+      return;
+    }
+    const detail =  await getDoc(doc(db,'PerDetails' ,SAP))
+
+    // let recordSAP = details.docs.map((doc)=>(doc.data()["SAPID"]))
+    // let recordPass = details.docs.map((doc)=>(doc.data()["password"]))
+
+    console.log(detail.data())
+
+    if(password === detail.data().password){
+          alert("Login Successful")
+          navigate("/PopUp");
     }
     else{
-      navigate("/PopUp");
+
+      alert("Login ID or Password doesn't match")
     }
-  };
+
+ };
 
   const handleSignUp = () => {
     navigate("/PhoneSignUp");
@@ -58,6 +89,10 @@ const SapLogin = () => {
           <button className="login" onClick={handleLogin}>
             Login
           </button>
+          {/* <button className="login" onClick={handleGoogle}>
+            Google
+          </button> */}
+
           <button className="otherBtn" onClick={handleSignUp}>Signup</button>
         <div id="recaptcha-container" />
       </form>
@@ -65,4 +100,5 @@ const SapLogin = () => {
   );
 };
 
-export default SapLogin;
+export default SapLogin ;
+// export {SAP};

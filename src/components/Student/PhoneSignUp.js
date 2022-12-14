@@ -55,7 +55,7 @@ const PhoneSignUp = () => {
   return (
     <>
 
-    <div className="card fullForm">
+    <div className="fullForm">
         {error && alert(error)}
         <form onSubmit={getOtp} style={{display :!flag ? "block" : "none"}}>
         <h3 id ="phoneVeri" >Phone Verification :</h3>

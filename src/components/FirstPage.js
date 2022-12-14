@@ -9,15 +9,15 @@ const FirstPage = () => {
     }
 
     const handleAdmin = ()=>{
-      navigate("AdminLogin")
+      navigate("/AdminLogin")
     }
   return (
-    <div className="fullFormFirst">
+    <div className="adminForm">
       {/* <Link to="/AdminLogin"> */}
-        <button className="otherBtn"onClick={handleAdmin} >Are you Admin?</button>
+        <button className="otherBtn"onClick={handleAdmin} >Admin Login</button>
       {/* </Link> */}
       {/* <Link to="/SapLogin"> */}
-        <button className="otherBtn" onClick={handleStudent} >Are you Student?</button>
+        <button className="otherBtn" onClick={handleStudent} >Student Login</button>
       {/* </Link> */}
     </div>
   );
