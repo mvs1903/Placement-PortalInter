@@ -145,7 +145,7 @@ export default function  Admin() {
     
     const getPersonalDetails = async() =>{
         
-      const details =  await getDocs(collection(db,'Details'))
+      const details =  await getDocs(collection(db,'PerDetails'))
       let records = details.docs.map((doc)=>({...doc.data(),id:enteredSAP}))
       setTableData(records);   
 

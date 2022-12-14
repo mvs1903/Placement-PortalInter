@@ -5,8 +5,9 @@ import { useUserAuth } from '../userAuthContext'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { async } from '@firebase/util'
+import { send_email } from '../../utilities/email_sender'
 
-const PhoneSignUp = () => {
+const PhoneSignUp = (props) => {
 
     const navigate = useNavigate()
     const [number, setNumber] = useState("")
@@ -32,7 +33,22 @@ const PhoneSignUp = () => {
         try {
             await confirmObj.confirm(otp)
             alert("You have been succesfully registered!")
+            send_email("muskaansharma81349@gmail.com","Successfully regestered!",`You have successfully registered!`);
+
             navigate("/PopUp")
+
+            // Send data to the backend via POST
+    fetch('http://localhost:5100/api/email', {  // Enter your IP address here
+
+    method: 'POST', 
+    mode: 'cors', 
+    body: JSON.stringify({
+        "email":"mvs81349@gmail.com",
+        "sub":"Hello",
+        "text":"Thank you ;)"
+      }) // body data type must match "Content-Type" header
+
+    });
         }
         catch(err){
             seterror(err.message)
@@ -53,7 +69,7 @@ const PhoneSignUp = () => {
         }
         console.log(number)
     };
-  return (
+    return (
     <>
 
     <div className="card">

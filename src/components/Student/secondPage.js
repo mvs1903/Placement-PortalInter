@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../firebaseConfig";
-import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc, getDoc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
@@ -39,7 +39,41 @@ export default function SecondPage() {
 
   // }
 
-  const handleSAPID = (e) => {
+  const handleSAPID = async (e) => {
+    setSAPID(e.target.value);
+    if (e.target.value.toString()!=""){
+
+      const details =  await getDoc(doc(collection(db,'Details'),e.target.value.toString()))
+    // // let records = details.docs.map((doc)=>(doc.data()))
+    
+      console.log(details.data());
+      console.log(details.data()["First Name"]);
+      if(details.data()!=undefined){
+        setFirstName(details.data()["First Name"]);
+        setMiddleName(details.data()["Father's First Name"]);
+        setSurname(details.data()["Last Name"]);
+        setMotherName(details.data()["Mother's First Name"]);
+        setPhoneNo(details.data()["Mobile Number"]);
+        setEmailID(details.data()["Email ID"]);
+        setDOB(details.data()["Date of Birth"]);
+        setAddress(details.data()["Address"]);
+        seteducationGap(details.data()[""]);
+        setTenthPercent(details.data()["Xth %"]);
+        setTwelfthPercent(details.data()["XIIth %"]);
+        setJEE(details.data()[""]);
+        setCET(details.data()[""]);
+        setSEM1(details.data()["Semester 1 CGPA"]);
+        setSEM2(details.data()["Semester 2 CGPA"]);
+        setSEM3(details.data()["Semester 3 CGPA"]);
+        setSEM4(details.data()["Semester 4 CGPA"]);
+        setSEM5(details.data()["Semester 5 CGPA"]);
+        setSEM6(details.data()["Semester 6 CGPA"]);
+
+  
+      };
+    };
+    
+    
     setSAPID(e.target.value);
   };
   const handleFirstName = (e) => {
@@ -118,7 +152,7 @@ export default function SecondPage() {
   const handleClick = async (e) => {
     try {
       const details = collection(db, "Details");
-      await setDoc(doc(db, "Details", SAPID), {
+      await setDoc(doc(db, "PerDetails", SAPID), {
         SAPID: Number(SAPID),
         firstName: firstName,
         middleNname: middleName,
@@ -169,7 +203,7 @@ export default function SecondPage() {
         <input
           type="text"
           className="labelIn"
-          placeholder="SAP Id"
+          placeholder="SAP ID"
           required
           onChange={handleSAPID}
           value={SAPID}

@@ -13,6 +13,7 @@ import PopUp from "./components/Student/PopUp";
 import Notification from "./components/Admin/Notification";
 import AdminNavTemplate from "./components/Admin/AdminNavTemplate";
 import FirstPage from "./components/FirstPage";
+import ExcelR from "./components/excelpage";
 
 function App() {
   return (
@@ -22,11 +23,13 @@ function App() {
         {/* <Route path="/" element={<HomePage />} /> */}
         <Route path="/" element={<FirstPage />} />
         <Route path="/SapLogin" element={<SapLogin />} />
+        <Route path="/excelpage" element={<ExcelR/>}></Route>
         <Route path="/PhoneSignUp" element={<PhoneSignUp />} />
         <Route path="/Otp" element={<Otp />} />
         <Route path="/secondPage" element={<SecondPage />} />
         <Route path="/secondPage" element={<SecondPage />} />
-        <Route path="/PopUp" element={<PopUp />} />
+        <Route path="/PopUp/" element={<PopUp />} />
+        <Route path="/PopUp/:id" element={<PopUp />} />
         <Route path="/adminLogin" element={<AdminLogin />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/Notification" element={<Notification />} />
