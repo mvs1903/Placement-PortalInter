@@ -1,10 +1,10 @@
-import { doc, updateDoc , getDocs ,collection,getDoc } from "firebase/firestore";
+import { doc, updateDoc , getDocs ,collection,getDoc,setDoc } from "firebase/firestore";
 import React, {useState,useEffect} from "react";
 import { Link, useNavigate ,useParams} from "react-router-dom";
 // import {compName} from "../Admin/Notification";
 import { db } from "../firebaseConfig";
 import { useUserAuth } from "../userAuthContext";
-export default function () {
+export default function PopUpCompany() {
 
   const { id } = useParams();
 
@@ -13,7 +13,14 @@ export default function () {
 
     const [enteredSAP, setEnteredSAP] = useState(0)
   const handleSubmit = async (e) => {
-    console.log(enteredSAP);
+    console.log(e);
+    const details = doc(db, "CompDetails", e, "Interested", enteredSAP);
+    const dt = await getDoc(doc(db, "PerDetails", enteredSAP));
+    const detail = await setDoc(details, dt.data());
+    console.log(detail);
+    console.log(details);
+
+    navigate("/Otp");
     
     // e.preventDefault()
     // db.connection("Compny")
@@ -29,6 +36,8 @@ export default function () {
   const handleNotInterested = async () => {
     try {
       // await logOut();
+
+    navigate("/PopUp");
     } catch (error) {
       console.log(error.message);
     }
@@ -82,7 +91,7 @@ export default function () {
           <input type="number" className="labelIn" value={enteredSAP} onChange={(val)=>{
             // console.log(val.target.value);
             setEnteredSAP(val.target.value)}}/> <br />
-          <input type={'button'}  className="login" onClick={handleSubmit} value={"Interested"} />
+          <input type={'button'}  className="login" onClick={()=>handleSubmit(id)} value={"Interested"} />
           <button className="reset" onClick={handleNotInterested} >
             Not Interested
           </button>

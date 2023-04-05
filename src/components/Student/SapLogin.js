@@ -41,7 +41,7 @@ const SapLogin = () => {
 
     console.log(detail.data())
 
-    if(password === detail.data().password){
+    if(detail.data()!=null && password === detail.data().password){
           alert("Login Successful")
           navigate("/PopUp");
     }

@@ -210,8 +210,8 @@ export default function SecondPage() {
           required
           onChange={handleSAPID}
           value={SAPID}
-          // max="11"
-          // min="11"
+          maxlength="11"
+          minlength="11"
         />
         <br />
         <label htmlFor="Firstname" id="Firstname" className="label">
@@ -223,6 +223,7 @@ export default function SecondPage() {
           placeholder="First Name"
           className="labelIn"
           required
+        
           onChange={handleFirstName}
           value={firstName}
         />
@@ -277,8 +278,8 @@ export default function SecondPage() {
           required
           onChange={handlePhoneNo}
           value={phoneNo}
-          min="10"
-          max="10"
+          minlength="10"
+          maxlength="10"
         />
         <br />
         <label htmlFor="emailId" id="emailId" className="label">
@@ -325,10 +326,23 @@ export default function SecondPage() {
         <label htmlFor="DOB" id="DOB" className="label">
           Create Password :
         </label>{" "}
-        <br />
+        
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Create Password"
+          className="labelIn"
+          required
+          onChange={handlePassword}
+          value={password}
+        />
+        <br/>
+
+        <label htmlFor="DOB" id="DOB" className="label">
+          Confirm Password :
+        </label>{" "}
+        <input
+          type="password"
+          placeholder="Confirm Password"
           className="labelIn"
           required
           onChange={handlePassword}
