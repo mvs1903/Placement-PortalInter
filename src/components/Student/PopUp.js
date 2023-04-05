@@ -1,4 +1,4 @@
-import { async } from "@firebase/util";
+
 import {
   setDoc,
   doc,
@@ -7,16 +7,19 @@ import {
   getDoc,
   collection,
 } from "firebase/firestore";
-import React, { useState, useEffect } from "react";
-import context from "react-bootstrap/esm/AccordionContext";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import {compName} from "../Admin/Notification";
 import { db } from "../firebaseConfig";
 import { useUserAuth } from "../userAuthContext";
-export default function () {
+import { UserContext } from "../../context/UserContex";
+
+export default function PopUp() {
   const [notification, setNotification] = useState([]);
   const [enteredSAP, setEnteredSAP] = useState("");
   const [compDetails, setCompDetails] = useState([]);
+  const con =useContext(UserContext);
+  const {UserInterestedDetails,AddInterested}=con;
   const handleSubmit = async (e) => {
     e.preventDefault();
     // db.connection("Compny")
@@ -45,11 +48,13 @@ export default function () {
 
   const handleInterested = async (e) => {
     console.log(e);
-    const details = doc(db, "CompDetails", e, "Interested", enteredSAP);
-    const dt = await getDoc(doc(db, "PerDetails", enteredSAP));
-    const detail = await setDoc(details, dt.data());
-    console.log(detail);
-    console.log(details);
+    
+    // const details = doc(db, "CompDetails", e, "Interested", enteredSAP);
+    // const dt = await getDoc(doc(db, "PerDetails", enteredSAP));
+    // const detail = await setDoc(details, dt.data());
+    AddInterested(e);
+    // console.log(detail);
+    // console.log(details);
 
     navigate("/Otp");
   };
@@ -62,10 +67,20 @@ export default function () {
     const getCompDetails = async () => {
       const details = await getDocs(collection(db, "CompDetails"));
       let records = details.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      setNotification(records);
-      console.log(records);
+      // UserInterestedDetails.forEach(e => {delete records[i]});
+      let record1=[];
+      for (let i=0;i<records.length;i++){
+        if (!UserInterestedDetails.includes(records[i].id)){
 
-      setCompDetails(records);
+          record1.push(records[i]);
+
+        }
+      }
+      console.log(UserInterestedDetails);
+      setNotification(record1);
+      console.log(record1);
+
+      setCompDetails(record1);
     };
     getCompDetails();
     console.log("first");

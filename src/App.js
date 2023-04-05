@@ -16,9 +16,11 @@ import FirstPage from "./components/FirstPage";
 import ExcelR from "./components/excelpage";
 import PopUpCompany from "./components/Student/PopUpCompany";
 import { CompanyState } from "./context/CompanyContext";
+import { UserState } from "./context/UserContex";
 function App() {
   return (
     <CompanyState>
+      <UserState>
       <Navbar />
       <Routes>
         {/* <Route path="/" element={<HomePage />} /> */}
@@ -35,6 +37,7 @@ function App() {
         <Route path="/Notification" element={<Notification />} />
         <Route path="/AdminNavTemplate" element={<AdminNavTemplate />} />
       </Routes>
+      </UserState>
     </CompanyState>
   );
 }
