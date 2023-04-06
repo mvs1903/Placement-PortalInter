@@ -49,9 +49,9 @@ export default function PopUp() {
   const handleInterested = async (e) => {
     console.log(e);
     
-    // const details = doc(db, "CompDetails", e, "Interested", enteredSAP);
-    // const dt = await getDoc(doc(db, "PerDetails", enteredSAP));
-    // const detail = await setDoc(details, dt.data());
+    const details = doc(db, "CompDetails", e, "Interested", enteredSAP);
+    const dt = await getDoc(doc(db, "PerDetails", enteredSAP));
+    const detail = await setDoc(details, dt.data());
     AddInterested(e);
     // console.log(detail);
     // console.log(details);

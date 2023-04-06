@@ -6,6 +6,7 @@ const CompanyContext=React.createContext();
 let CompanyState=(props)=>{
   const [CompanyDetails, setCompanyDetails] = useState({})
  const [compCount, setcompCount] = useState({});
+ const [CompDeptwise, setCompDeptwise] = useState({})
  useEffect(() => {
   getAllCompDetails().then((allComp)=>{
     setCompanyDetails(allComp)

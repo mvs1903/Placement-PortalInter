@@ -20,7 +20,8 @@ const BasicChart=(props)=>{
    type: "column",
    dataPoints: datapts
   }
-  ]
+  ],
+  
  }
  return (
  <div>

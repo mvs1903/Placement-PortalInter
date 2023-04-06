@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function SecondPage() {
+  const [Dept,setDept] = useState('Information Technology');
+  
   const [SAPID, setSAPID] = useState(0);
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
@@ -49,6 +51,7 @@ export default function SecondPage() {
       console.log(details.data());
       console.log(details.data()["First Name"]);
       if(details.data()!=undefined){
+        setDept(details.data()["Department"]);
         setFirstName(details.data()["First Name"]);
         setMiddleName(details.data()["Father's First Name"]);
         setSurname(details.data()["Last Name"]);
@@ -74,6 +77,11 @@ export default function SecondPage() {
     
     setSAPID(e.target.value);
   };
+  const handleDepartment = (e) => {
+    setDept(e.target.value);
+  };
+  
+
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
   };
@@ -150,7 +158,7 @@ export default function SecondPage() {
   const handleClick = async (e) => {
 
 
-    if((SAPID === "")||(firstName==="")||(middleName==="")||(surname==="")||(motherName==="")||(phoneNo==="")||(emailID==="")||(DOB==="")||(address==="")||(password==="")||(educationGap==="")||(tenthPercent==="")||(twelfthPercent==="")||(JEE==="")||(CET==="")||(SEM1==="")||(SEM2==="")||(SEM3==="")||(SEM4==="")||(SEM5==="")||(SEM6==="")){
+    if((Dept === "")||(SAPID === "")||(firstName==="")||(middleName==="")||(surname==="")||(motherName==="")||(phoneNo==="")||(emailID==="")||(DOB==="")||(address==="")||(password==="")||(educationGap==="")||(tenthPercent==="")||(twelfthPercent==="")||(JEE==="")||(CET==="")||(SEM1==="")||(SEM2==="")||(SEM3==="")||(SEM4==="")||(SEM5==="")||(SEM6==="")){
       alert("Feilds cannot be empty")
     }
     else{
@@ -158,6 +166,7 @@ export default function SecondPage() {
         const details = collection(db, "PerDetails");
         await setDoc(doc(db, "PerDetails", SAPID), {
           SAPID: Number(SAPID),
+        Department: Dept,
         firstName: firstName,
         middleNname: middleName,
         surname: surname,
@@ -213,6 +222,28 @@ export default function SecondPage() {
           maxlength="11"
           minlength="11"
         />
+        <br />
+        <label htmlFor="Dept" id="Dept" className="label">
+          Department :
+        </label>
+        <br />
+        <div>
+      
+      <select id="Dept" className="labelIn" value={Dept} onChange={handleDepartment}>
+        <option value="Information Technology">Information Technology</option>
+        <option value="Computer Engineering">Computer Engineering</option>
+        <option value="Computer Science and Engineering (Data Science)">Computer Science and Engineering (Data Science)</option>
+        <option value="Artificial Intelligence and Machine Learning">Artificial Intelligence and Machine Learning</option>
+        <option value="Artificial Intelligence (AI) and Data Science">Artificial Intelligence (AI) and Data Science</option>
+        <option value="Computer Science and Engineering (IOT and BlockChain)">Computer Science and Engineering (IOT and Block Chain Technology)</option>
+        <option value="Chemical Engineering">Chemical Engineering</option>
+        <option value="Electronics Engineering">Electronics Engineering</option>
+        <option value="Production Engineering">Production Engineering</option>
+        <option value="Biomedical Engineering">Biomedical Engineering</option>
+        <option value="Mechanical Engineering">Mechanical Engineering</option>
+        <option value="Electronics and Telecommunication Engg">Electronics and Telecommunication Engg</option>
+      </select>
+    </div>
         <br />
         <label htmlFor="Firstname" id="Firstname" className="label">
           First Name :{" "}
