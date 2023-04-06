@@ -23,6 +23,9 @@
     box-shadow: 4px 4px 10px rgb(20, 24, 33);
     border-radius: 5px;
     border: 0px solid rgb(20, 24, 33) ;
+    margin: 30px 30px;
+    padding: 20px 20px;
+    border-radius: 10px;
 }
 
 #navImg{
@@ -212,4 +215,10 @@ Table thead{
 
     text-align: center;
     justify-items: bottom;
+}
+
+.h3{
+    color: rgb(66, 115, 150);
+    margin: 40px 20px;
+
 }

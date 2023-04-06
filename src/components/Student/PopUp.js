@@ -13,6 +13,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { db } from "../firebaseConfig";
 import { useUserAuth } from "../userAuthContext";
 import { UserContext } from "../../context/UserContex";
+import { useAuth } from "../../context/authContextk";
+import { Navigate } from "react-router-dom";
 
 export default function PopUp() {
   const [notification, setNotification] = useState([]);
@@ -27,11 +29,18 @@ export default function PopUp() {
     // const newRef = firebase.firestore("Details/"+"6003200176")
     // await  updateDoc(Compnydoc,newRef)
     // alert("You have Successfully Registered !");
-
     console.log(notification);
   };
+  // const navigate = useNavigate()
   const { logOut, user } = useUserAuth();
   const navigate = useNavigate();
+
+  const {currentUser , userDetails} = useAuth()
+  const userid = currentUser.id;
+
+  useEffect(()=>{
+    setEnteredSAP(userDetails.SAPID)
+  })
 
   // const handleNotInterested = async () => {
   //   try {
@@ -47,14 +56,15 @@ export default function PopUp() {
   };
 
   const handleInterested = async (e) => {
-    console.log(e);
+    console.log(e,enteredSAP);
     
-    const details = doc(db, "CompDetails", e, "Interested", enteredSAP);
-    const dt = await getDoc(doc(db, "PerDetails", enteredSAP));
+    const details = doc(db, "CompDetails", e, "Interested", enteredSAP.toString());
+    console.log(details);
+    const dt = await getDoc(doc(db, "PerDetails", enteredSAP.toString()));
+    console.log(dt)
     const detail = await setDoc(details, dt.data());
+    console.log(detail);
     AddInterested(e);
-    // console.log(detail);
-    // console.log(details);
 
     navigate("/Otp");
   };
@@ -103,7 +113,7 @@ export default function PopUp() {
         <br />
         {compDetails?.map((company) => {
           return (
-            <form onSubmit={handleSubmit} className="formNoti">
+            <div  className="formNoti">
               {/* <Notification/> */}
               <h3 id="phoneVeri">
                 {" "}
@@ -127,7 +137,7 @@ export default function PopUp() {
               >
                 Not Interested
               </button> */}
-            </form>
+            </div>
           );
         })}
       </div>

@@ -10,6 +10,9 @@ const AdminNav = () => {
       <Link to="/admin">
         <button className="otherBtn">Data-Handling</button>
       </Link>
+      <Link to="/stats">
+        <button className="otherBtn">Statistics</button>
+      </Link>
     </div>
   );
 };

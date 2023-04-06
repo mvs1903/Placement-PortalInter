@@ -12,7 +12,7 @@ const BasicChart=(props)=>{
 
  const options = {
   title: {
-   text: "Statistics"
+   text: ""
   },
   data: [
   {

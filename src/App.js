@@ -17,11 +17,15 @@ import ExcelR from "./components/excelpage";
 import PopUpCompany from "./components/Student/PopUpCompany";
 import { CompanyState } from "./context/CompanyContext";
 import { UserState } from "./context/UserContex";
+import Statistics from "./components/Admin/statistics";
+import AuthProvider from "./context/authContextk";
 function App() {
   return (
     <CompanyState>
       <UserState>
       <Navbar />
+      <AuthProvider>
+
       <Routes>
         {/* <Route path="/" element={<HomePage />} /> */}
         <Route path="/" element={<FirstPage />} />
@@ -36,7 +40,11 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/Notification" element={<Notification />} />
         <Route path="/AdminNavTemplate" element={<AdminNavTemplate />} />
+        <Route path="/stats" element={<Statistics />} />
+        
+
       </Routes>
+      </AuthProvider>
       </UserState>
     </CompanyState>
   );

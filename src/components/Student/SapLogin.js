@@ -4,6 +4,7 @@ import {db} from "../firebaseConfig"
 import { doc, getDoc , collection } from "firebase/firestore";
 import {authentication} from "../firebaseConfig"
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useAuth } from "../../context/authContextk";
 
 const SapLogin = () => {
   const navigate = useNavigate();
@@ -28,6 +29,8 @@ const SapLogin = () => {
   //   })
   // }
   
+  const {login , setUserDetails} = useAuth()
+
   const handleLogin = async(e) => {
     e.preventDefault();
     if((SAP === "")||(SAP === null)||(password==="")||(password===null)){
@@ -42,6 +45,8 @@ const SapLogin = () => {
     console.log(detail.data())
 
     if(detail.data()!=null && password === detail.data().password){
+      let userDetails = await getDoc(doc(db,"PerDetails",SAP))
+      setUserDetails(userDetails.data())
           alert("Login Successful")
           navigate("/PopUp");
     }

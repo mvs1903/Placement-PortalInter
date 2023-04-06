@@ -52,10 +52,14 @@ const Notification = () => {
     navigate("/AdminNavTemplate");
   };
   return (
-    <div className="adminNav">
+    <div>
+      <div>
       <Link to="/AdminNavTemplate">
         <button className="otherBtn">Main Menu</button>
       </Link>
+      </div>
+      <div className="adminNav">
+
       <form action="">
         <input
           type="text"
@@ -89,6 +93,9 @@ const Notification = () => {
         </Link>
       </form>
     </div>
+
+    </div>
+    
   );
 };
 
