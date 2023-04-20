@@ -36,7 +36,7 @@ export default function PopUp() {
   const navigate = useNavigate();
 
   const {currentUser , userDetails} = useAuth()
-  const userid = currentUser.id;
+  // const userid = currentUser.id;
 
   useEffect(()=>{
     setEnteredSAP(userDetails.SAPID)
