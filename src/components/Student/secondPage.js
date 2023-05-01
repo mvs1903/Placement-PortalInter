@@ -29,6 +29,8 @@ export default function SecondPage() {
   const [SEM4, setSEM4] = useState(0);
   const [SEM5, setSEM5] = useState(0);
   const [SEM6, setSEM6] = useState(0);
+  const [counter, setCounter] = useState(0);
+
 //   const [admin, setAdmin] = useState("false");
 
   const navigate = useNavigate();
@@ -155,6 +157,8 @@ export default function SecondPage() {
     setSEM6(e.target.value);
   };
 
+  
+
   const handleClick = async (e) => {
 
 
@@ -199,6 +203,35 @@ export default function SecondPage() {
     alert("Form Submitted Successfuly");
     navigate("/SapLogin");
     }
+  };
+
+
+  const [inputs, setInputs] = useState([]);
+
+  const addInput = () => {
+    setInputs([...inputs, ""]);
+  };
+
+  const addInputMasters = () => {
+    setInputs([...inputs, ""]);
+  };
+
+  const handleInputChange = (index, event) => {
+    const newInputs = [...inputs];
+    newInputs[index] = event.target.value;
+    setInputs(newInputs);
+  };
+
+  const handleInputChange1 = (index, event) => {
+    const newInputs = [...inputs];
+    newInputs[index] = event.target.value;
+    setInputs(newInputs);
+  };
+
+  const handleFileUpload = (index, event) => {
+    const newInputs = [...inputs];
+    newInputs[index] = event.target.files[0];
+    setInputs(newInputs);
   };
   return (
     <>
@@ -357,7 +390,7 @@ export default function SecondPage() {
         <label htmlFor="DOB" id="DOB" className="label">
           Create Password :
         </label>{" "}
-        
+        <br />
         <input
           type="password"
           placeholder="Create Password"
@@ -367,10 +400,12 @@ export default function SecondPage() {
           value={password}
         />
         <br/>
+        <br />
 
         <label htmlFor="DOB" id="DOB" className="label">
           Confirm Password :
         </label>{" "}
+        <br />
         <input
           type="password"
           placeholder="Confirm Password"
@@ -381,7 +416,7 @@ export default function SecondPage() {
         />
         <br />
         <h3 className="formH3">
-          EDUCATION <br />{" "}
+          EDUCATION DETAILS<br />{" "}
         </h3>
         <label htmlFor="educationGap" id="educationGap" className="label">
           Education Gap :{" "}
@@ -525,8 +560,92 @@ export default function SecondPage() {
           value={SEM6}
         />
         <br />
+        <h3 className="formH3">
+          PLACEMENT DETAILS <br />{" "}
+        </h3>
+        {/* <button id="submitbtn" className="login" onClick={handleAdd}>
+          Add
+        </button> */}
+        Mention the company names you got selected and upload their respective offer letter.
+        <button onClick={addInput} className="login">Add</button>
+        <div className="container">
+      {inputs.map((input, index) => (
+        <div key={index} className="row">
+          <div className="col">
+          <input
+            type="text"
+            value={input}
+            placeholder="Company Selected"
+            onChange={(event) => handleInputChange(index, event)}
+            className="placemnt"
+          />
+          </div>
+          <div className="col">
+          <input type="file" onChange={(event) => handleFileUpload(index, event)} />
+          <br />
+          <br />
+          </div>
+        </div>
+      ))}
+    </div>
+    <br />
+    <h3 className="formH3">
+          POST GRADUATION DETAILS <br />{" "}
+        </h3>
+        Mention the details of all the exams appeared and their respective scores.
+
+        <button onClick={addInputMasters} className="login">Add</button>
+        <div className="container">
+        {inputs.map((input, index) => (
+        <div key={index} className="row">
+          <div className="col">
+          <input
+            type="text"
+            value={input}
+            placeholder="Exam Appereared"
+            onChange={(event) => handleInputChange1(index, event)}
+            className="placemnt"
+          />
+          </div>
+          <div className="col">
+          <input className="placemnt" type="text" onChange={(event) => handleInputChange1(index, event)} placeholder="Score"/>
+          <br />
+          <br />
+          </div>
+        </div>
+      ))}
+          </div>
+
+          Mention the details of all the admits you got selected.
+          <button onClick={addInput} className="login">Add</button>
+          <br />
+        <div className="container">
+      {inputs.map((input, index) => (
+        <div key={index} className="row">
+          <div className="col">
+          <input
+            type="text"
+            value={input}
+            placeholder="Admit"
+            onChange={(event) => handleInputChange(index, event)}
+            className="placemnt"
+          />
+          </div>
+          <div className="col">
+          <input type="file" onChange={(event) => handleFileUpload(index, event)} />
+          <br />
+          <br />
+
+          </div>
+        </div>
+      ))}
+    </div>
+        <br />
+        <br />
+        <br />
+
         <Link to="/SapLogin" >
-        <button id="submitbtn" className="login labelIn" onClick={handleClick}>
+        <button id="submitbtn" className="login" onClick={handleClick} >
           Submit
         </button>
         </Link>
