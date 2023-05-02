@@ -39,7 +39,7 @@ function App() {
         <Route path="/adminLogin" element={<AdminLogin />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/Notification" element={<Notification />} />
-        <Route path="/AdminNavTemplate" element={<AdminNavTemplate />} />
+        {/* <Route path="/AdminNavTemplate" element={<AdminNavTemplate />} /> */}
         <Route path="/stats" element={<Statistics />} />
         
 

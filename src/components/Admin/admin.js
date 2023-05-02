@@ -5,7 +5,7 @@ import { Table } from "react-bootstrap";
 import { collection, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { JsonToCsv, useJsonToCsv } from "react-json-csv";
-
+import AdminsideNavbar from "../adminsidenav";
 import enteredSAP from "../Student/SapLogin";
 import AdminNav from "./AdminNav";
 import { Link } from "react-router-dom";
@@ -193,11 +193,12 @@ export default function Admin() {
       {/* <div className="xy">
         <input type="text" />
       </div> */}
+      <AdminsideNavbar/>
+      <br />
+      <br />
+      <br />
+      
       <div className="fulForm">
-        <Link to="/AdminNavTemplate">
-          <button className="otherBtn">Main Menu</button>
-        </Link>
-
         <div>
           {/* <input  id="dropdown-cgpa" placeholder="Enter CGPA for Filtering"/> */}
           <select id="dropdown" onChange={handleSelect}>

@@ -5,6 +5,7 @@ import { db } from '../firebaseConfig';
 import { CompanyContext } from '../../context/CompanyContext';
 import { Link } from 'react-router-dom';
 import BasicChart from '../widgets/GetChart';
+import AdminsideNavbar from '../adminsidenav';
 
 
 const Statistics = () => {
@@ -45,15 +46,18 @@ const Statistics = () => {
   },[])
   return (
     <div>
-             <Link to="/AdminNavTemplate">
-          <button className="otherBtn">Main Menu</button>
-        </Link>
-     <h3 className='h3'>Company wise</h3>
+        <AdminsideNavbar/>
+        <br />
+        <br />
+        <div className='statsNav'>
+        <h3 className='h3'>Company wise</h3>
         <BasicChart data={getCompCountData()}/>
-        
+        </div>
+        <br />
+        <br />
+        <div className='statsNav'>
         <h3 className='h3'>Department wise</h3>
         <BasicChart data={selectedComp}/>
-        
         <br />
         <br />
         <br />
@@ -63,6 +67,8 @@ const Statistics = () => {
               return <option value={company.id}>{company.compName}</option>;
             })}
           </select>
+        </div>
+        
     </div>
   )
 }

@@ -14,10 +14,27 @@
     font-size: medium;
     border: 2px solid #D9D9D9 ;
 }
+.nav-link{
+    color: #ffffff;
+    text-decoration: none;
+}
+.labelInpost{
+    padding: 10px 20px;
+    /* margin: 10px 0px; */
+    border-radius: 5px;
+    background-color: #D9D9D9;
+    width: 300px;
+    height: 50px;
+    font-size: medium;
+    border: 2px solid #D9D9D9 ;
+}
+.adminnavbar{
+    color: white;
 
+
+}
 .navbar{
     background-color: white;
-    
     display: flex;
     /* width: auto; */
     /* box-shadow: 4px 4px 10px rgb(20, 24, 33); */
@@ -27,7 +44,24 @@
     align-content: flex-start;
     /* border: 0px solid rgb(20, 24, 33) ; */
 }
-
+.statsNav{
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    /* text-align: left; */
+    background-color: #EBEBEB;
+    display: grid;
+    width: 1250px;
+    height: 536px;
+    align-content: center;
+    vertical-align: middle;
+    /* box-shadow: 4px 4px 10px rgb(20, 24, 33); */
+    border-radius: 12px;
+    /* border: 0px solid rgb(20, 24, 33) ; */
+    margin: 30px 30px;
+    padding: 20px 20px;
+    /* border-radius: 10px; */
+}
 .adminNav{
     text-align: center;
     text-decoration: solid;
@@ -163,7 +197,7 @@ form{
 }
 
 .login:hover{
-    background-color:#38597e;
+    background-color:#416792;
 }
 
 .otherBtn{

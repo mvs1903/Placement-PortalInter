@@ -27,7 +27,7 @@ const PhoneSignUp = (props) => {
             navigate("/")
         )
     }
-
+// ----------yaha par dynamically email change hoga----------
     const verifyOtp= async (e) =>{
         e.preventDefault()
         console.log(otp)

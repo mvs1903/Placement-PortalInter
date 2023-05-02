@@ -15,7 +15,7 @@ import { useUserAuth } from "../userAuthContext";
 import { UserContext } from "../../context/UserContex";
 import { useAuth } from "../../context/authContextk";
 import { Navigate } from "react-router-dom";
-
+import StudentNavbar from "../Studentsidenav";
 export default function PopUp() {
   const [notification, setNotification] = useState([]);
   const [enteredSAP, setEnteredSAP] = useState("");
@@ -98,17 +98,17 @@ export default function PopUp() {
   }, []);
   return (
     <>
+    <StudentNavbar/>
       <div>
         {/* <h3>{SAP}</h3> */}
-        <button className="reset" onClick={handleLogout}>
-          Log out
-        </button>
+        <br />
+        <br />
         <h3>Enter SAPID</h3>
         <input
           onChange={handleEnteredSAP}
           value={enteredSAP}
           type="number"
-          className="labelIn"
+          className="placemnt"
         />{" "}
         <br />
         {compDetails?.map((company) => {
@@ -140,6 +140,12 @@ export default function PopUp() {
             </div>
           );
         })}
+        <br />
+        <br />
+        {/*--------- yaha jitne companies me interested hai woh yaha shift honge.---------- */}
+        <h3>Company Interested</h3>
+        
+
       </div>
     </>
   );

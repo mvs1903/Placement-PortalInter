@@ -17,6 +17,12 @@ const FirstPage = () => {
       navigate("/AdminLogin")
     }
   return (
+    
+
+
+
+
+
     <div className="adminForm">
       {/* <Link to="/AdminLogin"> */}
         <button className="otherBtn"onClick={handleAdmin} >Admin Login</button>

@@ -256,6 +256,32 @@ export default function SecondPage() {
           minlength="11"
         />
         <br />
+        <label htmlFor="Gender" id="Gender" className="label">
+          Gender :{" "}
+        </label>{" "}
+        <div className="row row-cols-auto">
+        <div class="col">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+  <label class="form-check-label" for="flexRadioDefault1">
+    Female
+  </label>
+</div>
+<div class="col">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
+  <label class="form-check-label" for="flexRadioDefault2">
+    Male
+  </label>
+</div>
+<div class="col">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked/>
+  <label class="form-check-label" for="flexRadioDefault3">
+    Other
+  </label>
+</div>
+
+        </div>
+
+        <br />
         <label htmlFor="Dept" id="Dept" className="label">
           Department :
         </label>
