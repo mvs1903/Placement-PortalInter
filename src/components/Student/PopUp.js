@@ -63,6 +63,12 @@ export default function PopUp() {
     const dt = await getDoc(doc(db, "PerDetails", enteredSAP.toString()));
     console.log(dt)
     const detail = await setDoc(details, dt.data());
+    
+    const perDetails = doc(db, "PerDetails", enteredSAP.toString(), "Interested",e);
+    let company=compDetails.find(x=>x.id==e);
+
+    const dtComp = await setDoc(perDetails,company)
+
     console.log(detail);
     AddInterested(e);
 
@@ -141,8 +147,6 @@ export default function PopUp() {
         })}
         <br />
         <br />
-        {/*--------- yaha jitne companies me interested hai woh yaha shift honge.---------- */}
-        <h3>Company Interested</h3>
         
 
       </div>

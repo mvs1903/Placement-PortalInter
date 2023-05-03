@@ -3,6 +3,7 @@ import { db } from "../firebaseConfig";
 import { collection, addDoc, setDoc, doc, getDoc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import StudentNavbar from "./Studentsidenav";
 
 export default function EditProfile() {
   const [Dept,setDept] = useState('Information Technology');
@@ -236,6 +237,7 @@ export default function EditProfile() {
   return (
     <>
       <br />
+      <StudentNavbar/>
       <form className="fullForm" onSubmit={handleClick}>
         <h3 className="formH3">
           {" "}

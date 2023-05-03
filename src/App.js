@@ -20,6 +20,7 @@ import { UserState } from "./context/UserContex";
 import Statistics from "./components/Admin/statistics";
 import AuthProvider from "./context/authContextk";
 import EditProfile from "./components/Student/EditProfile";
+import SelectedCompanies from "./components/Student/SelectedCompanies";
 function App() {
   return (
     <CompanyState>
@@ -36,6 +37,7 @@ function App() {
         <Route path="/Otp" element={<Otp />} />
         <Route path="/secondPage" element={<SecondPage />} />
         <Route path="/editProfile" element={<EditProfile />} />
+        <Route path="/selectedComp" element={<SelectedCompanies />} />
         <Route path="/PopUp/" element={<PopUp />} />
         <Route path="/PopUp/:id" element={<PopUpCompany />} />
         <Route path="/adminLogin" element={<AdminLogin />} />
