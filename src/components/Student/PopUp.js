@@ -18,6 +18,7 @@ import { Navigate } from "react-router-dom";
 import StudentNavbar from "../Student/Studentsidenav";
 export default function PopUp() {
   const [notification, setNotification] = useState([]);
+  const [interestedComp, setInterestedComp] = useState([]);
   const [enteredSAP, setEnteredSAP] = useState("");
   const [compDetails, setCompDetails] = useState([]);
   const con =useContext(UserContext);
@@ -64,10 +65,10 @@ export default function PopUp() {
     console.log(dt)
     const detail = await setDoc(details, dt.data());
     
-    const perDetails = doc(db, "PerDetails", enteredSAP.toString(), "Interested",e);
-    let company=compDetails.find(x=>x.id==e);
+    // const perDetails = doc(db, "PerDetails", enteredSAP.toString(), "Interested",e);
+    // let company=com
 
-    const dtComp = await setDoc(perDetails,company)
+    // const dtComp = await setDoc(perDetails,compDetails)
 
     console.log(detail);
     AddInterested(e);
@@ -85,18 +86,24 @@ export default function PopUp() {
       let records = details.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
       // UserInterestedDetails.forEach(e => {delete records[i]});
       let record1=[];
+      let record2=[];
       for (let i=0;i<records.length;i++){
         if (!UserInterestedDetails.includes(records[i].id)){
 
           record1.push(records[i]);
 
         }
+        else{
+          record2.push(records[i])
+        }
       }
-      console.log(UserInterestedDetails);
+      // console.log(UserInterestedDetails);
       setNotification(record1);
       console.log(record1);
+      console.log(record2);
 
       setCompDetails(record1);
+      setInterestedComp(record2)
     };
     getCompDetails();
     console.log("first");
@@ -147,7 +154,25 @@ export default function PopUp() {
         })}
         <br />
         <br />
-        
+
+        <h3>Interested Companies</h3>
+
+        {interestedComp?.map((company) => {
+          return (
+            <div  className="formNoti">
+              {/* <Notification/> */}
+              <h3 id="phoneVeri">
+                {" "}
+                {company.compName} is coming for interview on{" "}
+                {company.visitDate} at {company.reportTime} do you want to
+                Register ?
+              </h3>
+              <br />
+            </div>
+          );
+        })}
+
+
 
       </div>
     </>

@@ -30,11 +30,6 @@ export default function StudentNavbar() {
                       Edit Profile <img src="" alt="" />
                     </a>
                   </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="/selectedComp" style={{ color: "white",margin: "0px 20px" }}>
-                      Selected Companies <img src="" alt="" />
-                    </a>
-                  </li>
                 </ul>
               </div>
             </div>

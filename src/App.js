@@ -37,7 +37,6 @@ function App() {
         <Route path="/Otp" element={<Otp />} />
         <Route path="/secondPage" element={<SecondPage />} />
         <Route path="/editProfile" element={<EditProfile />} />
-        <Route path="/selectedComp" element={<SelectedCompanies />} />
         <Route path="/PopUp/" element={<PopUp />} />
         <Route path="/PopUp/:id" element={<PopUpCompany />} />
         <Route path="/adminLogin" element={<AdminLogin />} />
