@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function SecondPage() {
+  const [Dept,setDept] = useState('Information Technology');
+  
   const [SAPID, setSAPID] = useState(0);
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
@@ -27,6 +29,8 @@ export default function SecondPage() {
   const [SEM4, setSEM4] = useState(0);
   const [SEM5, setSEM5] = useState(0);
   const [SEM6, setSEM6] = useState(0);
+  const [counter, setCounter] = useState(0);
+
 //   const [admin, setAdmin] = useState("false");
 
   const navigate = useNavigate();
@@ -49,6 +53,7 @@ export default function SecondPage() {
       console.log(details.data());
       console.log(details.data()["First Name"]);
       if(details.data()!=undefined){
+        setDept(details.data()["Department"]);
         setFirstName(details.data()["First Name"]);
         setMiddleName(details.data()["Father's First Name"]);
         setSurname(details.data()["Last Name"]);
@@ -74,6 +79,11 @@ export default function SecondPage() {
     
     setSAPID(e.target.value);
   };
+  const handleDepartment = (e) => {
+    setDept(e.target.value);
+  };
+  
+
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
   };
@@ -147,10 +157,12 @@ export default function SecondPage() {
     setSEM6(e.target.value);
   };
 
+  
+
   const handleClick = async (e) => {
 
 
-    if((SAPID === "")||(firstName==="")||(middleName==="")||(surname==="")||(motherName==="")||(phoneNo==="")||(emailID==="")||(DOB==="")||(address==="")||(password==="")||(educationGap==="")||(tenthPercent==="")||(twelfthPercent==="")||(JEE==="")||(CET==="")||(SEM1==="")||(SEM2==="")||(SEM3==="")||(SEM4==="")||(SEM5==="")||(SEM6==="")){
+    if((Dept === "")||(SAPID === "")||(firstName==="")||(middleName==="")||(surname==="")||(motherName==="")||(phoneNo==="")||(emailID==="")||(DOB==="")||(address==="")||(password==="")||(educationGap==="")||(tenthPercent==="")||(twelfthPercent==="")||(JEE==="")||(CET==="")||(SEM1==="")||(SEM2==="")||(SEM3==="")||(SEM4==="")||(SEM5==="")||(SEM6==="")){
       alert("Feilds cannot be empty")
     }
     else{
@@ -158,6 +170,7 @@ export default function SecondPage() {
         const details = collection(db, "PerDetails");
         await setDoc(doc(db, "PerDetails", SAPID), {
           SAPID: Number(SAPID),
+        Department: Dept,
         firstName: firstName,
         middleNname: middleName,
         surname: surname,
@@ -191,6 +204,35 @@ export default function SecondPage() {
     navigate("/SapLogin");
     }
   };
+
+
+  const [inputs, setInputs] = useState([]);
+
+  const addInput = () => {
+    setInputs([...inputs, ""]);
+  };
+
+  const addInputMasters = () => {
+    setInputs([...inputs, ""]);
+  };
+
+  const handleInputChange = (index, event) => {
+    const newInputs = [...inputs];
+    newInputs[index] = event.target.value;
+    setInputs(newInputs);
+  };
+
+  const handleInputChange1 = (index, event) => {
+    const newInputs = [...inputs];
+    newInputs[index] = event.target.value;
+    setInputs(newInputs);
+  };
+
+  const handleFileUpload = (index, event) => {
+    const newInputs = [...inputs];
+    newInputs[index] = event.target.files[0];
+    setInputs(newInputs);
+  };
   return (
     <>
       <br />
@@ -210,9 +252,57 @@ export default function SecondPage() {
           required
           onChange={handleSAPID}
           value={SAPID}
-          // max="11"
-          // min="11"
+          maxlength="11"
+          minlength="11"
         />
+        <br />
+        <label htmlFor="Gender" id="Gender" className="label">
+          Gender :{" "}
+        </label>{" "}
+        <div className="row row-cols-auto">
+        <div class="col">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+  <label class="form-check-label" for="flexRadioDefault1">
+    Female
+  </label>
+</div>
+<div class="col">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
+  <label class="form-check-label" for="flexRadioDefault2">
+    Male
+  </label>
+</div>
+<div class="col">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked/>
+  <label class="form-check-label" for="flexRadioDefault3">
+    Other
+  </label>
+</div>
+
+        </div>
+
+        <br />
+        <label htmlFor="Dept" id="Dept" className="label">
+          Department :
+        </label>
+        <br />
+        <div>
+      
+      <select id="Dept" className="labelIn" value={Dept} onChange={handleDepartment}>
+        <option value="Information Technology">Information Technology</option>
+        <option value="Computer Engineering">Computer Engineering</option>
+        <option value="Computer Science and Engineering (Data Science)">Computer Science and Engineering (Data Science)</option>
+        <option value="Artificial Intelligence and Machine Learning">Artificial Intelligence and Machine Learning</option>
+        <option value="Artificial Intelligence (AI) and Data Science">Artificial Intelligence (AI) and Data Science</option>
+        <option value="Computer Science and Engineering (IOT and BlockChain)">Computer Science and Engineering (IOT and Block Chain Technology)</option>
+        <option value="Chemical Engineering">Chemical Engineering</option>
+        <option value="Electronics Engineering">Electronics Engineering</option>
+        <option value="Production Engineering">Production Engineering</option>
+        <option value="Biomedical Engineering">Biomedical Engineering</option>
+        <option value="Mechanical Engineering">Mechanical Engineering</option>
+        <option value="Electronics and Telecommunication Engg">Electronics and Telecommunication Engg</option>
+      </select>
+    </div>
         <br />
         <label htmlFor="Firstname" id="Firstname" className="label">
           First Name :{" "}
@@ -223,6 +313,7 @@ export default function SecondPage() {
           placeholder="First Name"
           className="labelIn"
           required
+        
           onChange={handleFirstName}
           value={firstName}
         />
@@ -277,8 +368,8 @@ export default function SecondPage() {
           required
           onChange={handlePhoneNo}
           value={phoneNo}
-          min="10"
-          max="10"
+          minlength="10"
+          maxlength="10"
         />
         <br />
         <label htmlFor="emailId" id="emailId" className="label">
@@ -328,7 +419,22 @@ export default function SecondPage() {
         <br />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Create Password"
+          className="labelIn"
+          required
+          onChange={handlePassword}
+          value={password}
+        />
+        <br/>
+        <br />
+
+        <label htmlFor="DOB" id="DOB" className="label">
+          Confirm Password :
+        </label>{" "}
+        <br />
+        <input
+          type="password"
+          placeholder="Confirm Password"
           className="labelIn"
           required
           onChange={handlePassword}
@@ -336,7 +442,7 @@ export default function SecondPage() {
         />
         <br />
         <h3 className="formH3">
-          EDUCATION <br />{" "}
+          EDUCATION DETAILS<br />{" "}
         </h3>
         <label htmlFor="educationGap" id="educationGap" className="label">
           Education Gap :{" "}
@@ -480,8 +586,92 @@ export default function SecondPage() {
           value={SEM6}
         />
         <br />
+        <h3 className="formH3">
+          PLACEMENT DETAILS <br />{" "}
+        </h3>
+        {/* <button id="submitbtn" className="login" onClick={handleAdd}>
+          Add
+        </button> */}
+        Mention the company names you got selected and upload their respective offer letter.
+        <button onClick={addInput} className="login">Add</button>
+        <div className="container">
+      {inputs.map((input, index) => (
+        <div key={index} className="row">
+          <div className="col">
+          <input
+            type="text"
+            value={input}
+            placeholder="Company Selected"
+            onChange={(event) => handleInputChange(index, event)}
+            className="placemnt"
+          />
+          </div>
+          <div className="col">
+          <input type="file" onChange={(event) => handleFileUpload(index, event)} />
+          <br />
+          <br />
+          </div>
+        </div>
+      ))}
+    </div>
+    <br />
+    <h3 className="formH3">
+          POST GRADUATION DETAILS <br />{" "}
+        </h3>
+        Mention the details of all the exams appeared and their respective scores.
+
+        <button onClick={addInputMasters} className="login">Add</button>
+        <div className="container">
+        {inputs.map((input, index) => (
+        <div key={index} className="row">
+          <div className="col">
+          <input
+            type="text"
+            value={input}
+            placeholder="Exam Appereared"
+            onChange={(event) => handleInputChange1(index, event)}
+            className="placemnt"
+          />
+          </div>
+          <div className="col">
+          <input className="placemnt" type="text" onChange={(event) => handleInputChange1(index, event)} placeholder="Score"/>
+          <br />
+          <br />
+          </div>
+        </div>
+      ))}
+          </div>
+
+          Mention the details of all the admits you got selected.
+          <button onClick={addInput} className="login">Add</button>
+          <br />
+        <div className="container">
+      {inputs.map((input, index) => (
+        <div key={index} className="row">
+          <div className="col">
+          <input
+            type="text"
+            value={input}
+            placeholder="Admit"
+            onChange={(event) => handleInputChange(index, event)}
+            className="placemnt"
+          />
+          </div>
+          <div className="col">
+          <input type="file" onChange={(event) => handleFileUpload(index, event)} />
+          <br />
+          <br />
+
+          </div>
+        </div>
+      ))}
+    </div>
+        <br />
+        <br />
+        <br />
+
         <Link to="/SapLogin" >
-        <button id="submitbtn" className="login labelIn" onClick={handleClick}>
+        <button id="submitbtn" className="login" onClick={handleClick} >
           Submit
         </button>
         </Link>

@@ -1,4 +1,4 @@
-import React , {useState} from 'react'
+import React , {useEffect, useState} from 'react'
 import {Link, useNavigate} from "react-router-dom"
 import { useUserAuth } from '../userAuthContext'
 
@@ -6,10 +6,12 @@ import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { async } from '@firebase/util'
 import { send_email } from '../../utilities/email_sender'
+import { useAuth } from '../../context/authContextk'
 
 const PhoneSignUp = (props) => {
 
     const navigate = useNavigate()
+    const auth=useAuth();
     const [number, setNumber] = useState("")
     const [error, seterror] = useState("")
     const [otp, setOtp] = useState("")
@@ -25,7 +27,7 @@ const PhoneSignUp = (props) => {
             navigate("/")
         )
     }
-
+// ----------yaha par dynamically email change hoga----------
     const verifyOtp= async (e) =>{
         e.preventDefault()
         console.log(otp)
@@ -55,19 +57,27 @@ const PhoneSignUp = (props) => {
         }
     };
 
-    const getOtp = async (e) =>{
-        e.preventDefault()
-        if(number=== "" || number === undefined )
+    useEffect(() => {
+        let x="+91"+auth.userDetails.phoneNo.toString()
+      setNumber(x)
+      getOtp(x)
+    }, [])
+    
+
+    const getOtp = async (num) =>{
+        // e.preventDefault()
+        console.log(num)
+        if(num=== "" || num === undefined )
         return seterror("Please enter a valid number")
         try {
-            const response = await setUpRecaptcha(number)
+            const response = await setUpRecaptcha(num)
             console.log(response)
             setConfirmObj(response)
             setFlag(true)
         } catch (err) {
             seterror(err.message)
         }
-        console.log(number)
+        console.log(num)
     };
     return (
     <>
@@ -77,7 +87,7 @@ const PhoneSignUp = (props) => {
         <form onSubmit={getOtp} style={{display :!flag ? "block" : "none"}}>
         <h3 id ="phoneVeri" >Phone Verification :</h3>
             <PhoneInput
-            defaultCountry='IND'
+            defaultCountry='IN'
             value={number}
             onChange={setNumber}
             placeholder ="Enter Phone Number"
@@ -85,10 +95,11 @@ const PhoneSignUp = (props) => {
             />
 
 
+      
         <div id="recaptcha-container" />
         <div>
         <Link to="/"/>
-        <button type="submit" className='login'>Send OTP</button>
+        {/* <button type="submit" className='login'>Send OTP</button> */}
         </div>
         </form>
 

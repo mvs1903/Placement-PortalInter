@@ -15,7 +15,7 @@ export default function AdminLogin() {
       alert("Email or Password cannot be empty!");
     } 
     else if(adminMail === hardMail && adminPass === hardPass) {
-      navigate("/AdminNavTemplate");
+      navigate("/admin");
     }
     else{
       alert("Wrong ID or Password")

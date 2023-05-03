@@ -1,4 +1,4 @@
-import { async } from "@firebase/util";
+
 import {
   setDoc,
   doc,
@@ -7,16 +7,21 @@ import {
   getDoc,
   collection,
 } from "firebase/firestore";
-import React, { useState, useEffect } from "react";
-import context from "react-bootstrap/esm/AccordionContext";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import {compName} from "../Admin/Notification";
 import { db } from "../firebaseConfig";
 import { useUserAuth } from "../userAuthContext";
-export default function () {
+import { UserContext } from "../../context/UserContex";
+import { useAuth } from "../../context/authContextk";
+import { Navigate } from "react-router-dom";
+import StudentNavbar from "../Studentsidenav";
+export default function PopUp() {
   const [notification, setNotification] = useState([]);
   const [enteredSAP, setEnteredSAP] = useState("");
   const [compDetails, setCompDetails] = useState([]);
+  const con =useContext(UserContext);
+  const {UserInterestedDetails,AddInterested}=con;
   const handleSubmit = async (e) => {
     e.preventDefault();
     // db.connection("Compny")
@@ -24,11 +29,18 @@ export default function () {
     // const newRef = firebase.firestore("Details/"+"6003200176")
     // await  updateDoc(Compnydoc,newRef)
     // alert("You have Successfully Registered !");
-
     console.log(notification);
   };
+  // const navigate = useNavigate()
   const { logOut, user } = useUserAuth();
   const navigate = useNavigate();
+
+  const {currentUser , userDetails} = useAuth()
+  // const userid = currentUser.id;
+
+  useEffect(()=>{
+    setEnteredSAP(userDetails.SAPID)
+  })
 
   // const handleNotInterested = async () => {
   //   try {
@@ -44,12 +56,15 @@ export default function () {
   };
 
   const handleInterested = async (e) => {
-    console.log(e);
-    const details = doc(db, "CompDetails", e, "Interested", enteredSAP);
-    const dt = await getDoc(doc(db, "PerDetails", enteredSAP));
+    console.log(e,enteredSAP);
+    
+    const details = doc(db, "CompDetails", e, "Interested", enteredSAP.toString());
+    console.log(details);
+    const dt = await getDoc(doc(db, "PerDetails", enteredSAP.toString()));
+    console.log(dt)
     const detail = await setDoc(details, dt.data());
     console.log(detail);
-    console.log(details);
+    AddInterested(e);
 
     navigate("/Otp");
   };
@@ -62,10 +77,20 @@ export default function () {
     const getCompDetails = async () => {
       const details = await getDocs(collection(db, "CompDetails"));
       let records = details.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      setNotification(records);
-      console.log(records);
+      // UserInterestedDetails.forEach(e => {delete records[i]});
+      let record1=[];
+      for (let i=0;i<records.length;i++){
+        if (!UserInterestedDetails.includes(records[i].id)){
 
-      setCompDetails(records);
+          record1.push(records[i]);
+
+        }
+      }
+      console.log(UserInterestedDetails);
+      setNotification(record1);
+      console.log(record1);
+
+      setCompDetails(record1);
     };
     getCompDetails();
     console.log("first");
@@ -73,22 +98,22 @@ export default function () {
   }, []);
   return (
     <>
+    <StudentNavbar/>
       <div>
         {/* <h3>{SAP}</h3> */}
-        <button className="reset" onClick={handleLogout}>
-          Log out
-        </button>
+        <br />
+        <br />
         <h3>Enter SAPID</h3>
         <input
           onChange={handleEnteredSAP}
           value={enteredSAP}
           type="number"
-          className="labelIn"
+          className="placemnt"
         />{" "}
         <br />
         {compDetails?.map((company) => {
           return (
-            <form onSubmit={handleSubmit} className="formNoti">
+            <div  className="formNoti">
               {/* <Notification/> */}
               <h3 id="phoneVeri">
                 {" "}
@@ -112,9 +137,15 @@ export default function () {
               >
                 Not Interested
               </button> */}
-            </form>
+            </div>
           );
         })}
+        <br />
+        <br />
+        {/*--------- yaha jitne companies me interested hai woh yaha shift honge.---------- */}
+        <h3>Company Interested</h3>
+        
+
       </div>
     </>
   );

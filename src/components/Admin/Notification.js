@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { db } from "../firebaseConfig";
 import { collection, addDoc, setDoc, doc, getDocs } from "firebase/firestore";
 import { send_email } from "../../utilities/email_sender";
+import { alignPropType } from "react-bootstrap/esm/types";
+import AdminsideNavbar from "../adminsidenav";
+
 
 const Notification = () => {
   const navigate = useNavigate();
@@ -52,14 +55,14 @@ const Notification = () => {
     navigate("/AdminNavTemplate");
   };
   return (
-    <div className="adminNav">
-      <Link to="/AdminNavTemplate">
-        <button className="otherBtn">Main Menu</button>
-      </Link>
+      <div>
+      <AdminsideNavbar/>
+      <div className="adminNav" >
+
       <form action="">
         <input
           type="text"
-          className="labelIN"
+          className="labelInpost"
           value={compName}
           onChange={handlecompName}
         />{" "}
@@ -68,27 +71,34 @@ const Notification = () => {
           type="date"
           name=""
           id=""
-          className="labelIn"
+          className="labelInpost"
           value={visitDate}
           onChange={handlevisitDate}
         />{" "}
+        <br /> 
         <br /> reporting time is{" "}
         <input
           type="time"
           name=""
           id=""
-          className="labelIn"
+          className="labelInpost"
           value={reportTime}
           onChange={handleReportTime}
         />
         <br />
-        <Link to="/AdminNavTemplate">
+        <br />
+        <Link to="/AdminNavTemplate" >
         <button className="login" onClick={handleSubmit}>
           Publish
         </button>
         </Link>
       </form>
     </div>
+
+    </div>
+
+    
+    
   );
 };
 

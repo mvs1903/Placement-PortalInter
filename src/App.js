@@ -14,11 +14,18 @@ import Notification from "./components/Admin/Notification";
 import AdminNavTemplate from "./components/Admin/AdminNavTemplate";
 import FirstPage from "./components/FirstPage";
 import ExcelR from "./components/excelpage";
-
+import PopUpCompany from "./components/Student/PopUpCompany";
+import { CompanyState } from "./context/CompanyContext";
+import { UserState } from "./context/UserContex";
+import Statistics from "./components/Admin/statistics";
+import AuthProvider from "./context/authContextk";
 function App() {
   return (
-    <>
+    <CompanyState>
+      <UserState>
       <Navbar />
+      <AuthProvider>
+
       <Routes>
         {/* <Route path="/" element={<HomePage />} /> */}
         <Route path="/" element={<FirstPage />} />
@@ -27,15 +34,19 @@ function App() {
         <Route path="/PhoneSignUp" element={<PhoneSignUp />} />
         <Route path="/Otp" element={<Otp />} />
         <Route path="/secondPage" element={<SecondPage />} />
-        <Route path="/secondPage" element={<SecondPage />} />
         <Route path="/PopUp/" element={<PopUp />} />
-        <Route path="/PopUp/:id" element={<PopUp />} />
+        <Route path="/PopUp/:id" element={<PopUpCompany />} />
         <Route path="/adminLogin" element={<AdminLogin />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/Notification" element={<Notification />} />
-        <Route path="/AdminNavTemplate" element={<AdminNavTemplate />} />
+        {/* <Route path="/AdminNavTemplate" element={<AdminNavTemplate />} /> */}
+        <Route path="/stats" element={<Statistics />} />
+        
+
       </Routes>
-    </>
+      </AuthProvider>
+      </UserState>
+    </CompanyState>
   );
 }
 
