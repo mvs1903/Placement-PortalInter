@@ -4,7 +4,7 @@ import { collection, addDoc, setDoc, doc, getDoc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-export default function SecondPage() {
+export default function EditProfile() {
   const [Dept,setDept] = useState('Information Technology');
   
   const [SAPID, setSAPID] = useState(0);
@@ -585,6 +585,89 @@ export default function SecondPage() {
           onChange={handleSEM6}
           value={SEM6}
         />
+        <br />
+        <h3 className="formH3">
+          PLACEMENT DETAILS <br />{" "}
+        </h3>
+        {/* <button id="submitbtn" className="login" onClick={handleAdd}>
+          Add
+        </button> */}
+        Mention the company names you got selected and upload their respective offer letter.
+        <button onClick={addInput} className="login">Add</button>
+        <div className="container">
+      {inputs.map((input, index) => (
+        <div key={index} className="row">
+          <div className="col">
+          <input
+            type="text"
+            value={input}
+            placeholder="Company Selected"
+            onChange={(event) => handleInputChange(index, event)}
+            className="placemnt"
+          />
+          </div>
+          <div className="col">
+          <input type="file" onChange={(event) => handleFileUpload(index, event)} />
+          <br />
+          <br />
+          </div>
+        </div>
+      ))}
+    </div>
+    <br />
+    <h3 className="formH3">
+          POST GRADUATION DETAILS <br />{" "}
+        </h3>
+        Mention the details of all the exams appeared and their respective scores.
+
+        <button onClick={addInputMasters} className="login">Add</button>
+        <div className="container">
+        {inputs.map((input, index) => (
+        <div key={index} className="row">
+          <div className="col">
+          <input
+            type="text"
+            value={input}
+            placeholder="Exam Appereared"
+            onChange={(event) => handleInputChange1(index, event)}
+            className="placemnt"
+          />
+          </div>
+          <div className="col">
+          <input className="placemnt" type="text" onChange={(event) => handleInputChange1(index, event)} placeholder="Score"/>
+          <br />
+          <br />
+          </div>
+        </div>
+      ))}
+          </div>
+
+          Mention the details of all the admits you got selected.
+          <button onClick={addInput} className="login">Add</button>
+          <br />
+        <div className="container">
+      {inputs.map((input, index) => (
+        <div key={index} className="row">
+          <div className="col">
+          <input
+            type="text"
+            value={input}
+            placeholder="Admit"
+            onChange={(event) => handleInputChange(index, event)}
+            className="placemnt"
+          />
+          </div>
+          <div className="col">
+          <input type="file" onChange={(event) => handleFileUpload(index, event)} />
+          <br />
+          <br />
+
+          </div>
+        </div>
+      ))}
+    </div>
+        <br />
+        <br />
         <br />
 
         <Link to="/SapLogin" >

@@ -5,7 +5,7 @@ import { Table } from "react-bootstrap";
 import { collection, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { JsonToCsv, useJsonToCsv } from "react-json-csv";
-import AdminsideNavbar from "../adminsidenav";
+import AdminsideNavbar from "./adminsidenav";
 import enteredSAP from "../Student/SapLogin";
 import AdminNav from "./AdminNav";
 import { Link } from "react-router-dom";

@@ -4,7 +4,7 @@ import { db } from "../firebaseConfig";
 import { collection, addDoc, setDoc, doc, getDocs } from "firebase/firestore";
 import { send_email } from "../../utilities/email_sender";
 import { alignPropType } from "react-bootstrap/esm/types";
-import AdminsideNavbar from "../adminsidenav";
+import AdminsideNavbar from "./adminsidenav";
 
 
 const Notification = () => {
@@ -27,10 +27,16 @@ const Notification = () => {
     setReportTime(e.target.value);
   };
 
-  const handleSubmit = async () => {
-    console.log("yo");
-    try {
-      // const compDetails = collection(db, "CompDetails");
+  const handleSubmit = async (e) => {
+    // console.log("yo");
+    e.preventDefault()
+    if(compName===""||compName===null||visitDate===""||visitDate===null||reportTime===""||reportTime===null){
+      alert('Feilds cannot be Empty!')
+    }
+    else{
+
+      try {
+        // const compDetails = collection(db, "CompDetails");
       let doc=await addDoc(collection(db, "CompDetails"), {
         compName: compName,
         visitDate: visitDate,
@@ -39,7 +45,7 @@ const Notification = () => {
       let link=`http://localhost:3000/PopUp/${doc.id}`
       console.log(link)
       let message= `${compName} is coming for placement on ${visitDate} ,interested students please make note, the reporting time is ${reportTime}. For more details visit ${link} . Please note that interested student should have minimum CGPA of X`;
-
+      
       console.log(message);
       
       const details =  await getDocs(collection(db,'PerDetails'))
@@ -53,6 +59,7 @@ const Notification = () => {
     }
     alert("Notification Published Successfully");
     navigate("/AdminNavTemplate");
+  }
   };
   return (
       <div>

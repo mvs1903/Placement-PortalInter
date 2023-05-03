@@ -19,6 +19,7 @@ import { CompanyState } from "./context/CompanyContext";
 import { UserState } from "./context/UserContex";
 import Statistics from "./components/Admin/statistics";
 import AuthProvider from "./context/authContextk";
+import EditProfile from "./components/Student/EditProfile";
 function App() {
   return (
     <CompanyState>
@@ -34,6 +35,7 @@ function App() {
         <Route path="/PhoneSignUp" element={<PhoneSignUp />} />
         <Route path="/Otp" element={<Otp />} />
         <Route path="/secondPage" element={<SecondPage />} />
+        <Route path="/editProfile" element={<EditProfile />} />
         <Route path="/PopUp/" element={<PopUp />} />
         <Route path="/PopUp/:id" element={<PopUpCompany />} />
         <Route path="/adminLogin" element={<AdminLogin />} />

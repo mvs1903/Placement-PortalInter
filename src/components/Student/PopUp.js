@@ -15,7 +15,7 @@ import { useUserAuth } from "../userAuthContext";
 import { UserContext } from "../../context/UserContex";
 import { useAuth } from "../../context/authContextk";
 import { Navigate } from "react-router-dom";
-import StudentNavbar from "../Studentsidenav";
+import StudentNavbar from "../Student/Studentsidenav";
 export default function PopUp() {
   const [notification, setNotification] = useState([]);
   const [enteredSAP, setEnteredSAP] = useState("");
@@ -102,13 +102,12 @@ export default function PopUp() {
       <div>
         {/* <h3>{SAP}</h3> */}
         <br />
-        <br />
-        <h3>Enter SAPID</h3>
         <input
           onChange={handleEnteredSAP}
           value={enteredSAP}
           type="number"
           className="placemnt"
+          disabled
         />{" "}
         <br />
         {compDetails?.map((company) => {

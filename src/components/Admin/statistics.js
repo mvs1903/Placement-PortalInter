@@ -5,7 +5,7 @@ import { db } from '../firebaseConfig';
 import { CompanyContext } from '../../context/CompanyContext';
 import { Link } from 'react-router-dom';
 import BasicChart from '../widgets/GetChart';
-import AdminsideNavbar from '../adminsidenav';
+import AdminsideNavbar from './adminsidenav';
 
 
 const Statistics = () => {
