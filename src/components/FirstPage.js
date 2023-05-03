@@ -17,10 +17,6 @@ const FirstPage = () => {
       navigate("/AdminLogin")
     }
   return (
-    
-
-
-
 
 
     <div className="adminForm">
@@ -32,6 +28,8 @@ const FirstPage = () => {
       {/* </Link> */}
       
     </div>
+    
+    
   );
 };
 
