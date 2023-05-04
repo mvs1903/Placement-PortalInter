@@ -51,10 +51,10 @@ export default function SecondPage() {
     // // let records = details.docs.map((doc)=>(doc.data()))
     
       console.log(details.data());
-      console.log(details.data()["firstName"]);
+      console.log(details.data()["First Name"]);
       if(details.data()!=undefined){
-        setDept(details.data()["dept"]);
-        setFirstName(details.data()["firstName"]);
+        setDept(details.data()["Department"]);
+        setFirstName(details.data()["First Name"]);
         setMiddleName(details.data()["Father's First Name"]);
         setSurname(details.data()["Last Name"]);
         setMotherName(details.data()["Mother's First Name"]);
