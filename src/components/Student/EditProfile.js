@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../firebaseConfig";
-import { collection, addDoc, setDoc, doc, getDoc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import StudentNavbar from "./Studentsidenav";
+import { useAuth } from "../../context/authContextk";
 
 export default function EditProfile() {
   const [Dept,setDept] = useState('Information Technology');
+
+  // const currentUser = useAuth()
+  // console.log(currentUser.id)
+
+  // const profileDoc = getDoc(doc(db,"PerDetails",currentUser.uid))
+  let record = []
   
   const [SAPID, setSAPID] = useState(0);
   const [firstName, setFirstName] = useState("");
@@ -169,8 +176,9 @@ export default function EditProfile() {
     else{
       try {
         const details = collection(db, "PerDetails");
-        await setDoc(doc(db, "PerDetails", SAPID), {
-          SAPID: Number(SAPID),
+        await updateDoc(doc(db, "PerDetails", SAPID), {
+
+        SAPID: Number(SAPID),
         Department: Dept,
         firstName: firstName,
         middleNname: middleName,

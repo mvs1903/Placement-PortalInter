@@ -13,6 +13,7 @@ import PopUp from "./components/Student/PopUp";
 import Notification from "./components/Admin/Notification";
 import AdminNavTemplate from "./components/Admin/AdminNavTemplate";
 import FirstPage from "./components/FirstPage";
+import FirstPageNav from "./components/FirstPageNav";
 import ExcelR from "./components/excelpage";
 import PopUpCompany from "./components/Student/PopUpCompany";
 import { CompanyState } from "./context/CompanyContext";
@@ -21,6 +22,9 @@ import Statistics from "./components/Admin/statistics";
 import AuthProvider from "./context/authContextk";
 import EditProfile from "./components/Student/EditProfile";
 import SelectedCompanies from "./components/Student/SelectedCompanies";
+import RecruitProcess from "./components/RecruitProcess";
+import ContactUs from "./components/ContactUs";
+import PrevRep from "./components/PrevRep";
 function App() {
   return (
     <CompanyState>
@@ -31,6 +35,10 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<HomePage />} /> */}
         <Route path="/" element={<FirstPage />} />
+        <Route path="/firstPageNav" element={<FirstPageNav />} />
+        <Route path="/recruitProcess" element={<RecruitProcess />} />
+        <Route path="/contactUs" element={<ContactUs />} />
+        <Route path="/prevRep" element={<PrevRep />} />
         <Route path="/SapLogin" element={<SapLogin />} />
         <Route path="/excelpage" element={<ExcelR/>}></Route>
         <Route path="/PhoneSignUp" element={<PhoneSignUp />} />
