@@ -1,0 +1,170 @@
+.adminloginpage-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #32557D;
+  width: 489px;
+  height: 832px;
+}
+.adminloginpage-item {
+  position: absolute;
+  top: 187px;
+  left: 128px;
+  width: 266px;
+  height: 229px;
+  object-fit: cover;
+}
+.djsce {
+  margin: 0px 30px;
+  padding-top: 10px;
+  left: 300px;
+  font-size: xx-large;
+}
+.djsce-placement-portal-container {
+  margin: 0;
+  position: absolute;
+  top: 475px;
+  left: 34px;
+  font-size: 21xl;
+  font-weight: 400;
+  font-family: inherit;
+}
+.adminloginpage-inner {
+  position: absolute;
+  top: 228.5px;
+  left: 639.5px;
+  border-top: 1px solid rgba(113, 110, 110, 0.75);
+  box-sizing: border-box;
+  width: 473px;
+  height: 1px;
+}
+.adminloginpage-child1,
+.rectangle-button {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: #ffffff;
+  position: absolute;
+  top: 183px;
+  left: 640px;
+  width: 217px;
+  height: 40px;
+}
+.adminloginpage-child1 {
+  left: 895px;
+}
+.admin,
+.student {
+  position: absolute;
+  top: 188px;
+  left: 704px;
+  color: dimgray;
+  cursor: pointer;
+}
+.admin {
+  left: 949px;
+  font-weight: 700;
+  color: #32557D;
+}
+.adminloginpage-child2,
+.rectangle-input {
+  border: 0;
+  background-color: whitesmoke;
+  position: absolute;
+  left: 658px;
+  width: 454px;
+  height: 44px;
+  appearance:none;
+}
+.rectangle-input {
+  top: 342px;
+  font: 25;
+}
+.adminloginpage-child2 {
+  top: 539px;
+  font-size: 25;
+  appearance: none;
+}
+
+
+.submit-btn,.submit-btn1 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color:#5EB557;
+  position: absolute;
+  top: 425px;
+  left: 942px;
+  border-radius: 20px;
+  width: 161px;
+  height: 40px;
+}
+.submit-btn1 {
+  /* background-color:#32557D;
+  top: 613px;
+  left: 775px;
+  width: 219px;
+  height: 41px;
+  border-radius: 15px;
+  font-size: 30;
+  cursor: pointer; */
+  background-color:#32557D;
+  top: 613px;
+  left: 775px;
+  width: 219px;
+  height: 41px;
+}
+.login-admin,
+.verify-otp {
+  cursor: pointer;
+  position: absolute;
+  top: 432px;
+  left: 977px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 87px;
+  height: 24px;
+}
+.verify-otp {
+  /* top: 626px;
+  left: 810px;
+  width: 153px;
+  height: 15px; */
+  top: 626px;
+  left: 810px;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  width: 153px;
+  height: 15px;
+}
+.otp-sent-to {
+  position: absolute;
+  top: 496px;
+  left: 665px;
+  font-size: small;
+  text-decoration: underline;
+  color: #32557D;
+}
+.adminloginpage-child3 {
+  border: 0;
+  background-color: whitesmoke;
+  position: absolute;
+  top: 270px;
+  left: 658px;
+  width: 454px;
+  height: 42px;
+  font-size: 25;
+}
+.adminloginpage {
+  position: relative;
+  background-color: #ffffff;
+  width: 100%;
+  height: 832px;
+  overflow: hidden;
+  text-align: center;
+  font-size: 5xl;
+  color: #ffffff;
+  /* font-family: var(--font-inter); */
+}

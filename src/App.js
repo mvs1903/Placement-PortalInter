@@ -22,6 +22,8 @@ import Statistics from "./components/Admin/statistics";
 import AuthProvider from "./context/authContextk";
 import EditProfile from "./components/Student/EditProfile";
 import SelectedCompanies from "./components/Student/SelectedCompanies";
+import StudentLoginPage from "./components/Student/StudentLoginPage.js"
+import AdminLoginPage from "./components/Admin/AdminLoginPage";
 import RecruitProcess from "./components/RecruitProcess";
 import ContactUs from "./components/ContactUs";
 import PrevRep from "./components/PrevRep";
@@ -39,7 +41,9 @@ function App() {
         <Route path="/recruitProcess" element={<RecruitProcess />} />
         <Route path="/contactUs" element={<ContactUs />} />
         <Route path="/prevRep" element={<PrevRep />} />
-        <Route path="/SapLogin" element={<SapLogin />} />
+        {/* <Route path="/SapLogin" element={<SapLogin />} /> */}
+        <Route path="/AdminLoginPage" element={<AdminLoginPage />} />
+        <Route path="/StudentLoginPage" element={<StudentLoginPage />} />
         <Route path="/excelpage" element={<ExcelR/>}></Route>
         <Route path="/PhoneSignUp" element={<PhoneSignUp />} />
         <Route path="/Otp" element={<Otp />} />
@@ -47,7 +51,7 @@ function App() {
         <Route path="/editProfile" element={<EditProfile />} />
         <Route path="/PopUp/" element={<PopUp />} />
         <Route path="/PopUp/:id" element={<PopUpCompany />} />
-        <Route path="/adminLogin" element={<AdminLogin />} />
+        {/* <Route path="/adminLogin" element={<AdminLogin />} /> */}
         <Route path="/admin" element={<Admin />} />
         <Route path="/Notification" element={<Notification />} />
         {/* <Route path="/AdminNavTemplate" element={<AdminNavTemplate />} /> */}

@@ -1,7 +1,8 @@
 import React ,{useState,useEffect, useContext}from "react";
 import StudentNavbar from "./Studentsidenav";
 import { db } from "../firebaseConfig";
-import { collection,getDocs , doc } from "firebase/firestore";
+
+import { collection,getDocs,doc } from "firebase/firestore";
 import { UserContext } from "../../context/UserContex";
 const SelectedCompanies = () => {
     const [compDetails, setCompDetails] = useState([]);
@@ -13,7 +14,9 @@ const SelectedCompanies = () => {
 
     useEffect(() => {
         const getCompDetails = async () => {
+        
           const details = await getDocs(collection(db, "CompDetails"));
+        // const details = doc(db, "PerDetails", enteredSAP.toString(), "Interested",);
           let records = details.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
           // UserInterestedDetails.forEach(e => {delete records[i]});
           let record1=[];

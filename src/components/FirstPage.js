@@ -11,11 +11,11 @@ const FirstPage = () => {
   const navigate = useNavigate();
 
   const handleStudent = () => {
-    navigate("/SapLogin");
+    navigate("/StudentLoginPage");
   };
 
   const handleAdmin = () => {
-    navigate("/AdminLogin");
+    navigate("/AdminLoginPage");
   };
   return (
     <div>

@@ -11,6 +11,7 @@ import AdminsideNavbar from './adminsidenav';
 const Statistics = () => {
 
  const [compDetails, setCompDetails] = useState([]);
+ 
 
   const [selectedComp, setselectedComp] = useState({});
   const con=useContext(CompanyContext);
@@ -39,7 +40,7 @@ const Statistics = () => {
   };
 
   useEffect(() => {
-   handleFilter();
+  handleFilter();
     return () => {
       handleFilter();
     }
@@ -49,9 +50,13 @@ const Statistics = () => {
         <AdminsideNavbar/>
         <br />
         <br />
-        <div className='statsNav'>
-        <h3 className='h3'>Company wise</h3>
-        <BasicChart data={getCompCountData()}/>
+        <div className='statsNav '>
+          <div className='overflow-x-scroll'>
+          <h3 className='h3 '>Company wise</h3>
+          <BasicChart data={getCompCountData()}/>
+
+          </div>
+        
         </div>
         <br />
         <br />
@@ -62,7 +67,7 @@ const Statistics = () => {
         <br />
         <br />
         <br />
-        <select id="dropdown" onChange={handleSelect}>
+        <select id="dropdown" className='labelInpost' onChange={handleSelect}>
             {compDetails?.map((company) => {
               return <option value={company.id}>{company.compName}</option>;
             })}

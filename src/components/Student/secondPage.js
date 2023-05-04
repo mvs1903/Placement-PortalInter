@@ -6,6 +6,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function SecondPage() {
   const [Dept,setDept] = useState('Information Technology');
+  const[Gender,setGender]=useState('Female');
   
   const [SAPID, setSAPID] = useState(0);
   const [firstName, setFirstName] = useState("");
@@ -81,8 +82,13 @@ export default function SecondPage() {
   };
   const handleDepartment = (e) => {
     setDept(e.target.value);
+
   };
   
+  const handleGender = (e) => {
+    setGender(e.target.value);
+    console.log(e.target.value)
+  };
 
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
@@ -170,6 +176,7 @@ export default function SecondPage() {
         const details = collection(db, "PerDetails");
         await setDoc(doc(db, "PerDetails", SAPID), {
           SAPID: Number(SAPID),
+          Gender:Gender,
         Department: Dept,
         firstName: firstName,
         middleNname: middleName,
@@ -252,35 +259,9 @@ export default function SecondPage() {
           required
           onChange={handleSAPID}
           value={SAPID}
-          maxlength="11"
-          minlength="11"
+          maxLength="11"
+          minLength="11"
         />
-        <br />
-        <label htmlFor="Gender" id="Gender" className="label">
-          Gender :{" "}
-        </label>{" "}
-        <div className="row row-cols-auto">
-        <div class="col">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-  <label class="form-check-label" for="flexRadioDefault1">
-    Female
-  </label>
-</div>
-<div class="col">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
-  <label class="form-check-label" for="flexRadioDefault2">
-    Male
-  </label>
-</div>
-<div class="col">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked/>
-  <label class="form-check-label" for="flexRadioDefault3">
-    Other
-  </label>
-</div>
-
-        </div>
-
         <br />
         <label htmlFor="Dept" id="Dept" className="label">
           Department :
@@ -303,6 +284,32 @@ export default function SecondPage() {
         <option value="Electronics and Telecommunication Engg">Electronics and Telecommunication Engg</option>
       </select>
     </div>
+        <br />
+        <label htmlFor="Gender" id="Gender" className="label">
+          Gender :{" "}
+        </label>{" "}
+        <div className="row row-cols-auto">
+        <div className="col">
+  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Female" onClick={handleGender}/>
+  <label className="form-check-label" htmlFor ="flexRadioDefault1">
+    Female
+  </label>
+</div>
+<div className="col">
+  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Male" onClick={handleGender}/>
+  <label className="form-check-label" htmlFor="flexRadioDefault2">
+    Male
+  </label>
+</div>
+<div className="col">
+  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" value="Other" onClick={handleGender}/>
+  <label className="form-check-label" htmlFor="flexRadioDefault3">
+    Other
+  </label>
+</div>
+
+        </div>
+        
         <br />
         <label htmlFor="Firstname" id="Firstname" className="label">
           First Name :{" "}
@@ -368,8 +375,8 @@ export default function SecondPage() {
           required
           onChange={handlePhoneNo}
           value={phoneNo}
-          minlength="10"
-          maxlength="10"
+          minLength="10"
+          maxLength="10"
         />
         <br />
         <label htmlFor="emailId" id="emailId" className="label">

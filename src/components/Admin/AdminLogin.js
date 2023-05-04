@@ -56,9 +56,9 @@ export default function AdminLogin() {
         onChange={handleAdminPass}
       />{" "}
       <br />
-      <Link to="/">
+      {/* <Link to="/">
         <button className="reset">Cancel</button>
-      </Link>
+      </Link> */}
       <button className="login" onClick={handleLogin}>
         Login
       </button>
