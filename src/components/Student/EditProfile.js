@@ -12,8 +12,6 @@ export default function EditProfile() {
   // const currentUser = useAuth()
   // console.log(currentUser.id)
 
-  // const profileDoc = getDoc(doc(db,"PerDetails",currentUser.uid))
-  let record = []
   
   const [SAPID, setSAPID] = useState(0);
   const [firstName, setFirstName] = useState("");
@@ -59,28 +57,28 @@ export default function EditProfile() {
     // // let records = details.docs.map((doc)=>(doc.data()))
     
       console.log(details.data());
-      console.log(details.data()["First Name"]);
+      console.log(details.data()["firstName"]);
       if(details.data()!=undefined){
         setDept(details.data()["Department"]);
-        setFirstName(details.data()["First Name"]);
-        setMiddleName(details.data()["Father's First Name"]);
-        setSurname(details.data()["Last Name"]);
-        setMotherName(details.data()["Mother's First Name"]);
-        setPhoneNo(details.data()["Mobile Number"]);
-        setEmailID(details.data()["Email ID"]);
-        setDOB(details.data()["Date of Birth"]);
-        setAddress(details.data()["Address"]);
-        seteducationGap(details.data()[""]);
-        setTenthPercent(details.data()["Xth %"]);
-        setTwelfthPercent(details.data()["XIIth %"]);
-        setJEE(details.data()[""]);
-        setCET(details.data()[""]);
-        setSEM1(details.data()["Semester 1 CGPA"]);
-        setSEM2(details.data()["Semester 2 CGPA"]);
-        setSEM3(details.data()["Semester 3 CGPA"]);
-        setSEM4(details.data()["Semester 4 CGPA"]);
-        setSEM5(details.data()["Semester 5 CGPA"]);
-        setSEM6(details.data()["Semester 6 CGPA"]);
+        setFirstName(details.data()["firstName"]);
+        setMiddleName(details.data()["middleNname"]);
+        setSurname(details.data()["surname"]);
+        setMotherName(details.data()["motherName"]);
+        setPhoneNo(details.data()["phoneNo"]);
+        setEmailID(details.data()["emailID"]);
+        setDOB(details.data()["DOB"]);
+        setAddress(details.data()["address"]);
+        seteducationGap(details.data()["educationGap"]);
+        setTenthPercent(details.data()["tenthPercent"]);
+        setTwelfthPercent(details.data()["tweflthPercent"]);
+        setJEE(details.data()["JEE"]);
+        setCET(details.data()["CET"]);
+        setSEM1(details.data()["SEM1"]);
+        setSEM2(details.data()["SEM2"]);
+        setSEM3(details.data()["SEM3"]);
+        setSEM4(details.data()["SEM4"]);
+        setSEM5(details.data()["SEM5"]);
+        setSEM6(details.data()["SEM6"]);
       };
     };
     
@@ -169,14 +167,44 @@ export default function EditProfile() {
 
   const handleClick = async (e) => {
 
-
+    e.preventDefault()
     if((Dept === "")||(SAPID === "")||(firstName==="")||(middleName==="")||(surname==="")||(motherName==="")||(phoneNo==="")||(emailID==="")||(DOB==="")||(address==="")||(password==="")||(educationGap==="")||(tenthPercent==="")||(twelfthPercent==="")||(JEE==="")||(CET==="")||(SEM1==="")||(SEM2==="")||(SEM3==="")||(SEM4==="")||(SEM5==="")||(SEM6==="")){
       alert("Feilds cannot be empty")
+    }
+    else if((SAPID === undefined)||(firstName===undefined)||(middleName===undefined)||(surname===undefined)||(motherName===undefined)||(phoneNo===undefined)||(emailID===undefined)||(DOB===undefined)||(address===undefined)||(password===undefined)||(educationGap===undefined)||(tenthPercent===undefined)||(twelfthPercent===undefined)||(JEE===undefined)||(CET===undefined)||(SEM1===undefined)||(SEM2===undefined)||(SEM3===undefined)||(SEM4===undefined)||(SEM5===undefined)||(SEM6===undefined)){
+      alert('Feilds cannot be undefined')
+      const map ={
+        SAPID: Number(SAPID),
+        Department: Dept,
+        firstName: firstName,
+        middleNname: middleName,
+        surname: surname,
+        motherName: motherName,
+        phoneNo: Number(phoneNo),
+        emailID: emailID,
+        DOB: DOB,
+        address: address,
+        password : password,
+
+        educationGap: educationGap,
+        tenthPercent: Number(tenthPercent),
+        twelfthPercent: Number(twelfthPercent),
+        JEE: Number(JEE),
+        CET: Number(CET),
+        SEM1: Number(SEM1),
+        SEM2: Number(SEM2),
+        SEM3: Number(SEM3),
+        SEM4: Number(SEM4),
+        SEM5: Number(SEM5),
+        SEM6: Number(SEM6),
+      }
+      console.log(map)
+      return;
     }
     else{
       try {
         const details = collection(db, "PerDetails");
-        await updateDoc(doc(db, "PerDetails", SAPID), {
+        await setDoc(doc(db, "PerDetails", SAPID), {
 
         SAPID: Number(SAPID),
         Department: Dept,
@@ -209,7 +237,7 @@ export default function EditProfile() {
       console.log(error.message);
     }
     
-    alert("Form Submitted Successfuly");
+    alert("Form Edited Successfuly");
     navigate("/SapLogin");
     }
   };
@@ -246,7 +274,7 @@ export default function EditProfile() {
     <>
       <br />
       <StudentNavbar/>
-      <form className="fullForm" onSubmit={handleClick}>
+      <form className="fullForm" action="" onSubmit={handleClick}>
         <h3 className="formH3">
           {" "}
           PERSONAL DETAILS <br />{" "}
@@ -680,11 +708,11 @@ export default function EditProfile() {
         <br />
         <br />
 
-        <Link to="/SapLogin" >
+        {/* <Link to="/SapLogin" > */}
         <button id="submitbtn" className="login" onClick={handleClick} >
           Submit
         </button>
-        </Link>
+        {/* </Link> */}
       </form>
     </>
   );
