@@ -197,9 +197,7 @@ export default function Admin() {
       <br />
       <br />
       <br />
-      
-      <div className="fulForm">
-        <div>
+      <div>
           {/* <input  id="dropdown-cgpa" placeholder="Enter CGPA for Filtering"/> */}
           <select id="dropdown" onChange={handleSelect}>
             {compDetails?.map((company) => {
@@ -207,8 +205,12 @@ export default function Admin() {
             })}
           </select>
         </div>
+      <div className="fullForm ">
+      <div >
+        
+        <div>
         <Table>
-          <thead>
+          <thead >
             <tr>
               <th>#</th>
               <th>
@@ -454,6 +456,8 @@ export default function Admin() {
             </tr>
           </thead>
 
+          
+
           <tbody>
             {tableData.map((row, index) => {
               {
@@ -488,10 +492,16 @@ export default function Admin() {
             })}
           </tbody>
         </Table>
+
+        </div>
+        
         <button className="login" onClick={handleExcel}>
           Create Excel Sheet
         </button>
       </div>
+
+      </div>
+      
     </>
   );
 }

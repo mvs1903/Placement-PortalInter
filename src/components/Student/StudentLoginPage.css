@@ -1,0 +1,199 @@
+.studentloginpage-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #32557D;
+  width: 489px;
+  height: 832px;
+}
+.djscelogo-icon {
+  position: absolute;
+  top: 191px;
+  left: 112px;
+  width: 266px;
+  height: 229px;
+  object-fit: cover;
+}
+.djsce1 {
+  margin: 0px 30px;
+  padding-top: 10px;
+  left: 300px;
+  font-size: xx-large;
+}
+.djsce-placement-portal-container1 {
+  margin: 0;
+  position: absolute;
+  top: 476px;
+  left: 35px;
+  font-size: 100%;
+  font-weight: 400;
+  font-family: inherit;
+}
+.studentloginpage-item {
+  position: absolute;
+  top: 228px;
+  left: 640px;
+  width: 472px;
+  height: 1px;
+  background-color: #827f7f;
+  object-fit: cover;
+}
+.studentloginpage-child1,
+.studentloginpage-inner {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: #ffffff;
+  position: absolute;
+  top: 183px;
+  width: 217px;
+  height: 40px;
+  font-size: 25;
+}
+.studentloginpage-inner {
+  left: 640px;
+  text-decoration: none;
+}
+.studentloginpage-child1 {
+  left: 895px;
+}
+.admin1,
+.student1 {
+  cursor: pointer;
+  position: absolute;
+  top: 188px;
+}
+.student1 {
+  left: 702px;
+  font-weight: 700;
+  color: #32557D;
+}
+.admin1 {
+  left: 951px;
+  color: dimgray;
+}
+.studentloginpage-child2,
+.studentloginpage-child3,
+.studentloginpage-child4 {
+  border: 0;
+  background-color: whitesmoke;
+  position: absolute;
+  left: 658px;
+  width: 454px;
+}
+.studentloginpage-child2 {
+  top: 281px;
+  height: 42px;
+}
+.studentloginpage-child3,
+.studentloginpage-child4 {
+  height: 44px;
+  
+  
+}
+.studentloginpage-child3 {
+  top: 354px;
+  text-decoration-color: #ebebeb;
+}
+.studentloginpage-child4 {
+  top: 542px;
+  appearance: none;
+  cursor: pointer;
+}
+.submit-btn2,
+.submit-btn3 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color:#5EB557;
+  position: absolute;
+  top: 425px;
+  left: 942px;
+  border-radius: 20px;
+  width: 161px;
+  height: 40px;
+}
+.submit-btn3 {
+  background-color:#32557D;
+  top: 613px;
+  left: 775px;
+  width: 219px;
+  height: 41px;
+}
+.login1 {
+  top: 432px;
+  left: 977px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 87px;
+  height: 24px;
+}
+.login1,
+.otp-sent-to1,
+.verify-otp1 {
+  cursor: pointer;
+  position: absolute;
+}
+.verify-otp1 {
+  top: 626px;
+  left: 810px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 153px;
+  height: 15px;
+}
+.otp-sent-to1 {
+  top: 496px;
+  left: 665px;
+  font-size: 15px;
+  text-decoration: underline;
+  color: #32557D;
+}
+.studentloginpage {
+  position: relative;
+  background-color: #ffffff;
+  width: 100%;
+  height: 832px;
+  overflow: scroll;
+  text-align: center;
+  font-size: 5xl;
+  color: #ffffff;
+  /* font-family: var(--font-inter); */
+}
+@media screen and (max-width: 1200px) {
+  .studentloginpage-item {
+    display: flex;
+  }
+  .studentloginpage-inner {
+    display: flex;
+    width: 217px;
+  }
+  .studentloginpage-child2 {
+    width: 454px;
+  }
+}
+@media screen and (max-width: 960px) {
+  .studentloginpage-item {
+    width: 472px;
+  }
+  .studentloginpage-inner {
+    display: flex;
+    width: 217px;
+  }
+  .studentloginpage-child2 {
+    display: flex;
+  }
+}
+@media screen and (max-width: 420px) {
+  .studentloginpage-inner,
+  .studentloginpage-item {
+    display: flex;
+  }
+  .studentloginpage-child2 {
+    display: flex;
+    font-size: 25;
+    appearance: none;
+  }
+}

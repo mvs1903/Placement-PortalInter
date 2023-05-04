@@ -60,6 +60,7 @@
     /* border: 0px solid rgb(20, 24, 33) ; */
     margin: 30px 30px;
     padding: 20px 20px;
+    overflow-x: scroll;
     /* border-radius: 10px; */
 }
 .adminNav{
@@ -125,11 +126,13 @@
 }
 .fullForm{
     text-align: left;
-    margin: 60px 80px;
+    max-width: 100%;
+    margin: 60px 50px;
     padding: 60px 100px;
     border-radius: 20px;
     background-color: rgb(245, 245, 245);
     color: #32557D;
+    overflow-x: scroll;
     /* border: 2px solid rgb(20, 38, 72) ; */
     /* box-shadow: 4px 4px 10px rgb(20, 24, 33); */
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
