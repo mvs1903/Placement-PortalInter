@@ -117,13 +117,13 @@ const StudentLoginPage = () => {
         placeholder="Password"
         value={password}
       />
-      {/* <input
+      <input
         className="studentloginpage-child4"
         type="number"
         placeholder="Please Enter OTP"
         data-scroll-to="rectangleInput"
         onClick={onRectangleInputClick}
-      /> */}
+      />
       <button
         className="submit-btn2"
         id="loginBtn"
