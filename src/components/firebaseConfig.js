@@ -2,6 +2,7 @@
 import {initializeApp} from 'firebase/app'
 import {getFirestore}from 'firebase/firestore'
 import {getAuth} from "firebase/auth"
+import { getStorage } from "firebase/storage";
 import { getDatabase } from 'firebase/database';
 
 // function StartFirebase(){
@@ -18,14 +19,15 @@ import { getDatabase } from 'firebase/database';
 
   const firebaseConfig = {
     apiKey: "AIzaSyCBgKI1-dxSdVf1I0vVGAUuhZ4C4xrQdBc",
-    authDomain: "djsce-pp1.firebaseapp.com",
-    projectId: "djsce-pp1",
-    storageBucket: "djsce-pp1.appspot.com",
-    messagingSenderId: "544701194222",
-    appId: "1:544701194222:web:2e48a5dcf41ee3b87878ff",
-    measurementId: "G-W1XHNFM2BG"
+  authDomain: "djsce-pp1.firebaseapp.com",
+  projectId: "djsce-pp1",
+  storageBucket: "djsce-pp1.appspot.com",
+  messagingSenderId: "544701194222",
+  appId: "1:544701194222:web:2e48a5dcf41ee3b87878ff",
+  measurementId: "G-W1XHNFM2BG"
   };
   const app = initializeApp(firebaseConfig)
+  export const storage = getStorage(app);
 
   // return getDatabase(app)
   

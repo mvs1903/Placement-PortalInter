@@ -66,10 +66,11 @@ const Notification = () => {
       <AdminsideNavbar/>
       <div className="adminNav" >
 
-      <form action="">
+        <div >
         <input
           type="text"
           className="labelInpost"
+
           value={compName}
           onChange={handlecompName}
         />{" "}
@@ -94,18 +95,20 @@ const Notification = () => {
         />
         <br />
         <br />
+        {/* -----Ise renderkarna hai------ */}
+        <label htmlFor="JD">Job description </label>
+        <br />
+        <textarea className="labelInJD" id="JD" placeholder="Mention the job description here" />
+        <br />
+        <br />
         <Link to="/AdminNavTemplate" >
         <button className="login" onClick={handleSubmit}>
           Publish
         </button>
-        </Link>
-      </form>
+        </Link>  
+      </div>
     </div>
-
     </div>
-
-    
-    
   );
 };
 

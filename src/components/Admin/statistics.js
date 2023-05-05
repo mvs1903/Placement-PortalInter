@@ -56,6 +56,8 @@ const Statistics = () => {
           <BasicChart data={getCompCountData()}/>
 
           </div>
+          <br />
+          <br />
         
         </div>
         <br />

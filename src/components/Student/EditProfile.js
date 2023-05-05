@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import StudentNavbar from "./Studentsidenav";
 import { useAuth } from "../../context/authContextk";
+import { addSelectedCompany } from "../../firebase_utils/firebaseDatabase";
+import { uploadFile } from "../../firebase_utils/frirebaseStorage";
 
 export default function EditProfile() {
   const [Dept,setDept] = useState('Information Technology');
@@ -36,6 +38,7 @@ export default function EditProfile() {
   const [SEM5, setSEM5] = useState(0);
   const [SEM6, setSEM6] = useState(0);
   const [counter, setCounter] = useState(0);
+  const[Gender,setGender]=useState('Female');
 
 //   const [admin, setAdmin] = useState("false");
 
@@ -48,16 +51,24 @@ export default function EditProfile() {
   // const handleData = (e) => {
 
   // }
+  
+  
+  const handleGender = (e) => {
+    setGender(e.target.value);
+    console.log(e.target.value)
+  };
 
+  
   const handleSAPID = async (e) => {
     setSAPID(e.target.value);
     if (e.target.value.toString()!=""){
       console.log(e.target.value)
       const details =  await getDoc(doc(collection(db,'Details'),e.target.value.toString()))
+
     // // let records = details.docs.map((doc)=>(doc.data()))
     
       console.log(details.data());
-      console.log(details.data()["firstName"]);
+      // console.log(details.data()["firstName"]);
       if(details.data()!=undefined){
         setDept(details.data()["Department"]);
         setFirstName(details.data()["firstName"]);
@@ -162,51 +173,61 @@ export default function EditProfile() {
   const handleSEM6 = (e) => {
     setSEM6(e.target.value);
   };
+  
 
   
 
   const handleClick = async (e) => {
 
     e.preventDefault()
-    if((Dept === "")||(SAPID === "")||(firstName==="")||(middleName==="")||(surname==="")||(motherName==="")||(phoneNo==="")||(emailID==="")||(DOB==="")||(address==="")||(password==="")||(educationGap==="")||(tenthPercent==="")||(twelfthPercent==="")||(JEE==="")||(CET==="")||(SEM1==="")||(SEM2==="")||(SEM3==="")||(SEM4==="")||(SEM5==="")||(SEM6==="")){
-      alert("Feilds cannot be empty")
-    }
-    else if((SAPID === undefined)||(firstName===undefined)||(middleName===undefined)||(surname===undefined)||(motherName===undefined)||(phoneNo===undefined)||(emailID===undefined)||(DOB===undefined)||(address===undefined)||(password===undefined)||(educationGap===undefined)||(tenthPercent===undefined)||(twelfthPercent===undefined)||(JEE===undefined)||(CET===undefined)||(SEM1===undefined)||(SEM2===undefined)||(SEM3===undefined)||(SEM4===undefined)||(SEM5===undefined)||(SEM6===undefined)){
-      alert('Feilds cannot be undefined')
-      const map ={
-        SAPID: Number(SAPID),
-        Department: Dept,
-        firstName: firstName,
-        middleNname: middleName,
-        surname: surname,
-        motherName: motherName,
-        phoneNo: Number(phoneNo),
-        emailID: emailID,
-        DOB: DOB,
-        address: address,
-        password : password,
+    const map ={
+      SAPID: Number(SAPID),
+      Department: Dept,
+      firstName: firstName,
+      middleNname: middleName,
+      surname: surname,
+      motherName: motherName,
+      phoneNo: Number(phoneNo),
+      emailID: emailID,
+      DOB: DOB,
+      address: address,
+      password : password,
 
-        educationGap: educationGap,
-        tenthPercent: Number(tenthPercent),
-        twelfthPercent: Number(twelfthPercent),
-        JEE: Number(JEE),
-        CET: Number(CET),
-        SEM1: Number(SEM1),
-        SEM2: Number(SEM2),
-        SEM3: Number(SEM3),
-        SEM4: Number(SEM4),
-        SEM5: Number(SEM5),
-        SEM6: Number(SEM6),
-      }
-      console.log(map)
-      return;
+      educationGap: educationGap,
+      tenthPercent: Number(tenthPercent),
+      twelfthPercent: Number(twelfthPercent),
+      JEE: Number(JEE),
+      CET: Number(CET),
+      SEM1: Number(SEM1),
+      SEM2: Number(SEM2),
+      SEM3: Number(SEM3),
+      SEM4: Number(SEM4),
+      SEM5: Number(SEM5),
+      SEM6: Number(SEM6),
     }
-    else{
+    console.log(map)
+    // if((SAPID === "")||(firstName==="")||(middleName==="")||(surname==="")||(motherName==="")||(phoneNo==="")||(emailID==="")||(DOB==="")||(address==="")||(educationGap==="")||(tenthPercent==="")||(twelfthPercent==="")||(JEE==="")||(CET==="")||(SEM1==="")||(SEM2==="")||(SEM3==="")||(SEM4==="")||(SEM5==="")||(SEM6==="")){
+    //   console.log("3")
+    //   alert("Feilds cannot be empty")
+    // }
+    // else if((SAPID === undefined)||(firstName===undefined)||(middleName===undefined)||(surname===undefined)||(motherName===undefined)||(phoneNo===undefined)||(emailID===undefined)||(DOB===undefined)||(address===undefined)||(educationGap===undefined)||(tenthPercent===undefined)||(twelfthPercent===undefined)||(JEE===undefined)||(CET===undefined)||(SEM1===undefined)||(SEM2===undefined)||(SEM3===undefined)||(SEM4===undefined)||(SEM5===undefined)||(SEM6===undefined)){
+    //   alert('Feilds cannot be undefined')
+    //   console.log("2")
+    //   // return;
+    // }
+    {
       try {
+        console.log("inputs",inputs)
+      inputs.forEach((i)=>{
+        uploadFile("hello",i["files"])
+        i["files"]="filename"
+        addSelectedCompany(SAPID,i);
+      })
         const details = collection(db, "PerDetails");
         await setDoc(doc(db, "PerDetails", SAPID), {
 
         SAPID: Number(SAPID),
+        Gender:Gender,
         Department: Dept,
         firstName: firstName,
         middleNname: middleName,
@@ -230,45 +251,75 @@ export default function EditProfile() {
         SEM5: Number(SEM5),
         SEM6: Number(SEM6),
       });
+
+      
       //   });
+      
       console.log("Input entered");
       console.log("y")
     } catch (error) {
       console.log(error.message);
     }
     
+    
+
+    
     alert("Form Edited Successfuly");
-    navigate("/SapLogin");
+    navigate("/PopUp");
     }
+
+
+    
+
+
+
+
   };
 
 
   const [inputs, setInputs] = useState([]);
+  const [Masterinputs, setMasterInputs] = useState([]);
+  const [Admitinputs, setAdmitInputs] = useState([]);
+
 
   const addInput = () => {
-    setInputs([...inputs, ""]);
+    setInputs([...inputs, {}]);
   };
 
   const addInputMasters = () => {
-    setInputs([...inputs, ""]);
+    setMasterInputs([...Masterinputs, {}]);
+  };
+
+  const addAdmitInput = () => {
+    setAdmitInputs([...Admitinputs, {}]);
   };
 
   const handleInputChange = (index, event) => {
     const newInputs = [...inputs];
-    newInputs[index] = event.target.value;
+    newInputs[index]["name"] = event.target.value;
     setInputs(newInputs);
   };
 
   const handleInputChange1 = (index, event) => {
-    const newInputs = [...inputs];
-    newInputs[index] = event.target.value;
-    setInputs(newInputs);
+    const newInputs1 = [...Masterinputs];
+    newInputs1[index]["name"] = event.target.value;
+    setMasterInputs(newInputs1);
   };
 
-  const handleFileUpload = (index, event) => {
-    const newInputs = [...inputs];
-    newInputs[index] = event.target.files[0];
-    setInputs(newInputs);
+  const handleFileUploadPlacement = (index, event) => {
+    const newInputs2P = [...inputs];
+    newInputs2P[index]["files"] = event.target.files[0];
+    setInputs(newInputs2P);
+  };
+  const handleFileUploadMasters = (index, event) => {
+    const newInputs2M = [...Masterinputs];
+    newInputs2M[index]["name"] = event.target.files[0];
+    setMasterInputs(newInputs2M);
+  };
+  const handleInputChange2 = (index, event) => {
+    const newInputs1 = [...Admitinputs];
+    newInputs1[index] = event.target.value;
+    setAdmitInputs(newInputs1);
   };
   return (
     <>
@@ -297,27 +348,31 @@ export default function EditProfile() {
         <label htmlFor="Gender" id="Gender" className="label">
           Gender :{" "}
         </label>{" "}
-        <div className="row row-cols-auto">
-        <div class="col">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-  <label class="form-check-label" for="flexRadioDefault1">
+        
+        
+<div className="row row-cols-auto">
+        <div className="col">
+  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Female" onClick={handleGender}/>
+  <label className="form-check-label" htmlFor ="flexRadioDefault1">
     Female
   </label>
 </div>
-<div class="col">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
-  <label class="form-check-label" for="flexRadioDefault2">
+<div className="col">
+  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Male" onClick={handleGender}/>
+  <label className="form-check-label" htmlFor="flexRadioDefault2">
     Male
   </label>
 </div>
-<div class="col">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked/>
-  <label class="form-check-label" for="flexRadioDefault3">
+<div className="col">
+  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" value="Other" onClick={handleGender}/>
+  <label className="form-check-label" htmlFor="flexRadioDefault3">
     Other
   </label>
 </div>
 
         </div>
+
+
 
         <br />
         <label htmlFor="Dept" id="Dept" className="label">
@@ -451,7 +506,7 @@ export default function EditProfile() {
           value={address}
         ></textarea>
         <br />
-        <label htmlFor="DOB" id="DOB" className="label">
+        {/* <label htmlFor="DOB" id="DOB" className="label">
           Create Password :
         </label>{" "}
         <br />
@@ -477,7 +532,7 @@ export default function EditProfile() {
           required
           onChange={handlePassword}
           value={password}
-        />
+        /> */}
         <br />
         <h3 className="formH3">
           EDUCATION DETAILS<br />{" "}
@@ -631,21 +686,21 @@ export default function EditProfile() {
           Add
         </button> */}
         Mention the company names you got selected and upload their respective offer letter.
-        <button onClick={addInput} className="login">Add</button>
+        <input onClick={addInput} className="login" value={"Add"}/>
         <div className="container">
       {inputs.map((input, index) => (
         <div key={index} className="row">
           <div className="col">
           <input
             type="text"
-            value={input}
+            value={input.name}
             placeholder="Company Selected"
             onChange={(event) => handleInputChange(index, event)}
             className="placemnt"
           />
           </div>
           <div className="col">
-          <input type="file" onChange={(event) => handleFileUpload(index, event)} />
+          <input type="file" onChange={(event) => handleFileUploadPlacement(index, event)} />
           <br />
           <br />
           </div>
@@ -658,21 +713,21 @@ export default function EditProfile() {
         </h3>
         Mention the details of all the exams appeared and their respective scores.
 
-        <button onClick={addInputMasters} className="login">Add</button>
-        <div className="container">
-        {inputs.map((input, index) => (
+        <input type="button" value={"Add"} onClick={addInputMasters} className="login"/>
+        <div className="container2">
+        {Masterinputs.map((input, index) => (
         <div key={index} className="row">
           <div className="col">
           <input
             type="text"
-            value={input}
+            value={input.name}
             placeholder="Exam Appereared"
             onChange={(event) => handleInputChange1(index, event)}
             className="placemnt"
           />
           </div>
           <div className="col">
-          <input className="placemnt" type="text" onChange={(event) => handleInputChange1(index, event)} placeholder="Score"/>
+          <input className="placemnt" type="text" value={input.name} onChange={(event) => handleInputChange1(index, event)} placeholder="Score"/>
           <br />
           <br />
           </div>
@@ -681,22 +736,22 @@ export default function EditProfile() {
           </div>
 
           Mention the details of all the admits you got selected.
-          <button onClick={addInput} className="login">Add</button>
+          <input type="button" onClick={addAdmitInput} className="login" value={"Add"}/>
           <br />
-        <div className="container">
-      {inputs.map((input, index) => (
+        <div className="container1">
+      {Admitinputs.map((input, index) => (
         <div key={index} className="row">
           <div className="col">
           <input
             type="text"
-            value={input}
+            value={input.name}
             placeholder="Admit"
-            onChange={(event) => handleInputChange(index, event)}
+            onChange={(event) => handleInputChange2(index, event)}
             className="placemnt"
           />
           </div>
           <div className="col">
-          <input type="file" onChange={(event) => handleFileUpload(index, event)} />
+          <input type="file" onChange={(event) => handleFileUploadMasters(index, event)} />
           <br />
           <br />
 
@@ -709,9 +764,8 @@ export default function EditProfile() {
         <br />
 
         {/* <Link to="/SapLogin" > */}
-        <button id="submitbtn" className="login" onClick={handleClick} >
-          Submit
-        </button>
+        <input type="button" id="submitbtn" value={"Submit"} className="login" onClick={handleClick} />
+          
         {/* </Link> */}
       </form>
     </>
