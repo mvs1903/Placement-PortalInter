@@ -1,0 +1,146 @@
+.studentloginpageChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-steelblue);
+  width: 489px;
+  height: 832px;
+}
+.studentloginpageItem {
+  position: absolute;
+  top: 187px;
+  left: 128px;
+  width: 266px;
+  height: 229px;
+  object-fit: cover;
+}
+.djsce {
+  margin: 0;
+}
+.djscePlacementPortalContainer {
+  position: absolute;
+  top: 475px;
+  left: 34px;
+  font-size: var(--font-size-21xl);
+}
+.studentloginpageInner {
+  position: absolute;
+  top: 228.5px;
+  left: 639.5px;
+  border-top: 1px solid var(--color-dimgray-200);
+  box-sizing: border-box;
+  width: 473px;
+  height: 1px;
+}
+.rectangleButton,
+.rectangleDiv {
+  position: absolute;
+  top: 183px;
+  left: 640px;
+  background-color: var(--color-white);
+  width: 217px;
+  height: 40px;
+}
+.rectangleButton {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  left: 895px;
+}
+.admin,
+.student {
+  position: absolute;
+  top: 188px;
+  left: 702px;
+  color: var(--color-steelblue);
+}
+.admin {
+  left: 951px;
+  color: var(--color-dimgray-100);
+  cursor: pointer;
+}
+.rectangleInput,
+.studentloginpageChild1,
+.studentloginpageChild2,
+.submitBtn,
+.submitBtn1 {
+  border: 0;
+  background-color: var(--color-whitesmoke);
+  position: absolute;
+  top: 285px;
+  left: 658px;
+  width: 454px;
+  height: 42px;
+}
+.studentloginpageChild1,
+.studentloginpageChild2,
+.submitBtn,
+.submitBtn1 {
+  top: 342px;
+  height: 44px;
+}
+.studentloginpageChild2,
+.submitBtn,
+.submitBtn1 {
+  top: 539px;
+}
+.submitBtn,
+.submitBtn1 {
+  cursor: pointer;
+  padding: 0;
+  background-color: var(--color-mediumseagreen);
+  top: 425px;
+  left: 942px;
+  border-radius: var(--br-lg);
+  width: 161px;
+  height: 40px;
+}
+.submitBtn1 {
+  background-color: var(--color-steelblue);
+  top: 613px;
+  left: 775px;
+  width: 219px;
+  height: 41px;
+}
+.login {
+  position: absolute;
+  top: 432px;
+  left: 977px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 87px;
+  height: 24px;
+}
+.otpSentTo,
+.verifyOtp {
+  cursor: pointer;
+  position: absolute;
+}
+.verifyOtp {
+  top: 626px;
+  left: 810px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 153px;
+  height: 15px;
+}
+.otpSentTo {
+  top: 496px;
+  left: 665px;
+  font-size: var(--font-size-base);
+  text-decoration: underline;
+  color: var(--color-steelblue);
+}
+.studentloginpage {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 832px;
+  overflow: hidden;
+  text-align: center;
+  font-size: var(--font-size-5xl);
+  color: var(--color-white);
+  font-family: var(--font-inter);
+}

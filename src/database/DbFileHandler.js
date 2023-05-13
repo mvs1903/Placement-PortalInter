@@ -18,6 +18,8 @@ ans={...ans,...{[`${comps[i][1]}`]:snapshot.docs.length}}
  return ans
 }
 
+
+
 const getAllCompDetails= async ()=>{
  const coll = collection(db, `CompDetails`);
  const snapshot = await getDocs(coll);

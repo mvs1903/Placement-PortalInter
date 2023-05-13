@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 export default function AdminsideNavbar() {
   return (
     <div className="adminnavbar">
@@ -19,24 +20,24 @@ export default function AdminsideNavbar() {
               <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                   <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="/" style={{ color: "white",margin: "0px 20px" }}>
+                    <Link className="nav-link active" aria-current="page" to="/" style={{ color: "white",margin: "0px 20px" }}>
                       Logout{" "}
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" aria-current="page" href="/stats" style={{ color: "white" ,margin: "0px 20px"}}>
+                    <Link className="nav-link" aria-current="page" to="/stats" style={{ color: "white" ,margin: "0px 20px"}}>
                       Analysis
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="/Notification" style={{ color: "white",margin: "0px 20px" }}>
+                    <Link className="nav-link" to="/Notification" style={{ color: "white",margin: "0px 20px" }}>
                       Post Notification
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="/admin" style={{ color: "white" , margin: "0px 20px" }}>
+                    <Link className="nav-link" to="/admin" style={{ color: "white" , margin: "0px 20px" }}>
                       Data Handling
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

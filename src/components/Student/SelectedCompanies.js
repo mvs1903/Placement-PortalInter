@@ -1,12 +1,14 @@
-import React ,{useState,useEffect}from "react";
+import React ,{useState,useEffect, useContext}from "react";
 import StudentNavbar from "./Studentsidenav";
 import { db } from "../firebaseConfig";
-import { collection,getDocs } from "firebase/firestore";
+
+import { collection,getDocs,doc } from "firebase/firestore";
 import { UserContext } from "../../context/UserContex";
 const SelectedCompanies = () => {
     const [compDetails, setCompDetails] = useState([]);
     const [notification, setNotification] = useState([]);
-    const con =UserContext(UserContext);
+    const [interestedComp, setInterestedComp] = useState([]);
+    const con =useContext(UserContext);
     const {UserInterestedDetails,AddInterested}=con;
 
 
@@ -18,18 +20,24 @@ const SelectedCompanies = () => {
           let records = details.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
           // UserInterestedDetails.forEach(e => {delete records[i]});
           let record1=[];
+          let record2=[];
           for (let i=0;i<records.length;i++){
             if (!UserInterestedDetails.includes(records[i].id)){
     
               record1.push(records[i]);
     
             }
+            else{
+              record2.push(records[i])
+            }
           }
           console.log(UserInterestedDetails);
           setNotification(record1);
           console.log(record1);
+          console.log(record2);
     
           setCompDetails(record1);
+          setInterestedComp(record2)
         };
         getCompDetails();
         console.log("first");
@@ -38,7 +46,7 @@ const SelectedCompanies = () => {
   return (
     <div>
       <StudentNavbar />
-      {compDetails?.map((company) => {
+      {interestedComp?.map((company) => {
         return (
           <div className="formNoti">
             {/* <Notification/> */}
