@@ -27,11 +27,14 @@ import AdminLoginPage from "./components/Admin/AdminLoginPage";
 import RecruitProcess from "./components/RecruitProcess";
 import ContactUs from "./components/ContactUs";
 import PrevRep from "./components/PrevRep";
+import ChartProvider from "./context/ChartContext";
 function App() {
   return (
     <CompanyState>
       <UserState>
+        <ChartProvider>
       <Navbar />
+
       <AuthProvider>
 
       <Routes>
@@ -60,6 +63,7 @@ function App() {
 
       </Routes>
       </AuthProvider>
+      </ChartProvider>
       </UserState>
     </CompanyState>
   );

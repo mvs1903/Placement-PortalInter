@@ -5,6 +5,7 @@ var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 const BasicChart=(props)=>{
  let datapts=[]
+
  Object.keys(props.data).forEach(function(key, index) {
    datapts.push({label:key,y:props.data[key]})
 
@@ -12,15 +13,26 @@ const BasicChart=(props)=>{
 
  const options = {
   title: {
-   text: ""
+   text: props.label==undefined?"":props.label
   },
   data: [
   {
    // Change type to "doughnut", "line", "splineArea", etc.
-   type: "column",
+   type: props.type==undefined?"column":props.type,
    dataPoints: datapts
   }
   ],
+
+    scales: {
+      xAxes: [{
+        ticks: {
+          
+          autoSkip: false,
+         
+        }
+      }]
+    }
+  
   
  }
  return (
