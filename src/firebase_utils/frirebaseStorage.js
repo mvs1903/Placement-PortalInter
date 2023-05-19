@@ -9,7 +9,7 @@ let uploadFile=async (firebasefilepath,file)=>{
       
       
       //dynamically set reference to the file name
-      var thisRef = ref(storage,file.name);
+      var thisRef = ref(storage,firebasefilepath);
       //put request upload file to firebase storage
       uploadBytes(thisRef, file).then((snapshot) => {
        console.log('Uploaded a blob or file!');

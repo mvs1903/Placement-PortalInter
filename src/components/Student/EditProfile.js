@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../firebaseConfig";
+import { db, storage } from "../firebaseConfig";
 import { collection, addDoc, setDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import firebase from 'firebase/app';
+import 'firebase/storage';
+import 'firebase/firestore';
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import StudentNavbar from "./Studentsidenav";
@@ -39,6 +42,8 @@ export default function EditProfile() {
   const [SEM6, setSEM6] = useState(0);
   const [counter, setCounter] = useState(0);
   const[Gender,setGender]=useState('Female');
+  const [file_add, setFile] = useState(null);
+  const [fileName, setFileName] = useState('');
 
 //   const [admin, setAdmin] = useState("false");
 
@@ -92,8 +97,10 @@ export default function EditProfile() {
         setSEM6(details.data()["SEM6"]);
       };
     };
-    
-    
+    // -------
+    // const storage = firebase.storage();
+    // const firestore = firebase.firestore();
+    // ----------
     setSAPID(e.target.value);
   };
   const handleDepartment = (e) => {
@@ -216,12 +223,25 @@ export default function EditProfile() {
     //   // return;
     // }
     {
-      try {
+      try { 
+
+        // const storageRef = storage.ref();
+        // const fileRef = storageRef.child("Masters/"+SAPID+"/"+file_add.name);
+        // await fileRef.put(file_add); 
         console.log("inputs",inputs)
-      inputs.forEach((i)=>{
-        uploadFile("hello",i["files"])
-        i["files"]="filename"
-        addSelectedCompany(SAPID,i);
+        inputs.forEach(async(i)=>{
+          let filepath="Selected/"+SAPID+"/"+i["files"].name
+          uploadFile(filepath,i["files"])
+        addDoc(collection(db,"PerDetails",SAPID,"Selected"),{
+          filename:filepath,
+          name:i["name"]
+        }) 
+
+        // i["files"]= await firestor.collection('PerDetails').doc(i).update({
+        //   fileName: "Masters/"+SAPID+"/"+file_add.name,
+        // });
+    
+        // addSelectedCompany(SAPID,i);
       })
         const details = collection(db, "PerDetails");
         await setDoc(doc(db, "PerDetails", SAPID), {
@@ -310,6 +330,8 @@ export default function EditProfile() {
     const newInputs2P = [...inputs];
     newInputs2P[index]["files"] = event.target.files[0];
     setInputs(newInputs2P);
+    setFileName(newInputs2P.name);
+
   };
   const handleFileUploadMasters = (index, event) => {
     const newInputs2M = [...Masterinputs];
