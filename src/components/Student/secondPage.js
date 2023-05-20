@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function SecondPage() {
-  const [Dept,setDept] = useState('Information Technology');
+  const [Dept,setDept] = useState('');
   const[Gender,setGender]=useState('Female');
   
   const [SAPID, setSAPID] = useState(0);

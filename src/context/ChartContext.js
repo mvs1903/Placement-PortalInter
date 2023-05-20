@@ -24,16 +24,16 @@ useEffect(() => {
         console.log(companyId);
         let instdocs=await getAllDocsFromSubCollection(DBConstants.COMPANY_COLLECTION,companyId,DBConstants.INTERESTED);
         interestedStudents[companyId]=instdocs.docs.map((e)=>{return {...e.data(),id:e.id}});
-    }
+    } 
     setInterestedStudentMap(interestedStudents);
     console.log(interestedStudents);
-    }
+    } 
     getAllDocsFromCollection(DBConstants.COMPANY_COLLECTION).then((res)=>{
         if(res!=undefined){
             let allComps={}
         res.docs.forEach((e)=>{
             allComps[e.id]={...e.data(),id:e.id}
-           
+            
             
         });
         setCompanyDetails(allComps);
@@ -42,6 +42,19 @@ useEffect(() => {
         }
 
     })
+
+    let getSelectedStudentMap=async(compdetails)=>{
+        let selectedStudents={}
+        // console.log(Object.keys(compdetails).length)
+        console.log("60003200145");
+        let instdocs=await getAllDocsFromSubCollection(DBConstants.COMPANY_COLLECTION,"60003200145",DBConstants.INTERESTED);
+        selectedStudents["60003200145"]=instdocs.docs.map((e)=>{return {...e.data(),id:e.id}}); 
+    setInterestedStudentMap(selectedStudents);
+    console.log(selectedStudents);
+    } 
+
+
+
 }, [])
 
  return (<ChartContext.Provider value={{CompanyDetails,InterestedStudentsMap}}>

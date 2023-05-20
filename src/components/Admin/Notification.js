@@ -12,6 +12,7 @@ const Notification = () => {
   //
   
   const [compName, setcompName] = useState("");
+  const [jobDescription, setJobDescription] = useState("");
   const [visitDate, setvisitDate] = useState("");
   const [reportTime, setReportTime] = useState("");
 
@@ -25,6 +26,9 @@ const Notification = () => {
 
   const handleReportTime = (e) => {
     setReportTime(e.target.value);
+  };
+  const handleJobDescription = (e) => {
+    setJobDescription(e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -41,10 +45,11 @@ const Notification = () => {
         compName: compName,
         visitDate: visitDate,
         reportTime: reportTime,
+        jobDescription: jobDescription,
       });
       let link=`http://localhost:3000/PopUp/${doc.id}`
       console.log(link)
-      let message= `${compName} is coming for placement on ${visitDate} ,interested students please make note, the reporting time is ${reportTime}. For more details visit ${link} . Please note that interested student should have minimum CGPA of X`;
+      let message= `${compName} is coming for placement on ${visitDate} ,interested students please make note, the reporting time is ${reportTime}. Job Description : ${jobDescription} . For more details visit ${link} . Please note that interested student should have minimum CGPA of X`;
       
       console.log(message);
       
@@ -98,7 +103,7 @@ const Notification = () => {
         {/* -----Ise renderkarna hai------ */}
         <label htmlFor="JD">Job description </label>
         <br />
-        <textarea className="labelInJD" id="JD" placeholder="Mention the job description here" />
+        <textarea  value={jobDescription} onChange={handleJobDescription} className="labelInJD" id="JD" placeholder="Mention the job description here" />
         <br />
         <br />
         <Link to="/AdminNavTemplate" >

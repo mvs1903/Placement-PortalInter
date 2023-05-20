@@ -10,9 +10,12 @@ import StudentNavbar from "./Studentsidenav";
 import { useAuth } from "../../context/authContextk";
 import { addSelectedCompany } from "../../firebase_utils/firebaseDatabase";
 import { uploadFile } from "../../firebase_utils/frirebaseStorage";
+import { getAllDocsFromCollection } from "../../firebase_utils/firebaseDBFunctions";
 
 export default function EditProfile() {
   const [Dept,setDept] = useState('Information Technology');
+  const [UploadedAdmit,setUploadedAdmit] = useState([]);
+  const [UploadedPlacement,setUploadedPlacement] = useState([]);
 
   // const currentUser = useAuth()
   // console.log(currentUser.id)
@@ -44,6 +47,9 @@ export default function EditProfile() {
   const[Gender,setGender]=useState('Female');
   const [file_add, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
+  const [inputs, setInputs] = useState([]);
+  const [Masterinputs, setMasterInputs] = useState([]);
+  const [Admitinputs, setAdmitInputs] = useState([]);
 
 //   const [admin, setAdmin] = useState("false");
 
@@ -95,7 +101,17 @@ export default function EditProfile() {
         setSEM4(details.data()["SEM4"]);
         setSEM5(details.data()["SEM5"]);
         setSEM6(details.data()["SEM6"]);
+        setGender(details.data()["Gender"]);
+        
       };
+
+      let response=await getAllDocsFromCollection("PerDetails/"+SAPID+"/Admits");
+      let _uploadedAdmits=[]
+      response.docs.forEach((doc)=>{
+        console.log(doc.data())
+        _uploadedAdmits.push(doc.data());
+      });
+      setUploadedAdmit(_uploadedAdmits);
     };
     // -------
     // const storage = firebase.storage();
@@ -211,6 +227,8 @@ export default function EditProfile() {
       SEM4: Number(SEM4),
       SEM5: Number(SEM5),
       SEM6: Number(SEM6),
+      Gender: Gender,
+      fileName: fileName
     }
     console.log(map)
     // if((SAPID === "")||(firstName==="")||(middleName==="")||(surname==="")||(motherName==="")||(phoneNo==="")||(emailID==="")||(DOB==="")||(address==="")||(educationGap==="")||(tenthPercent==="")||(twelfthPercent==="")||(JEE==="")||(CET==="")||(SEM1==="")||(SEM2==="")||(SEM3==="")||(SEM4==="")||(SEM5==="")||(SEM6==="")){
@@ -243,6 +261,22 @@ export default function EditProfile() {
     
         // addSelectedCompany(SAPID,i);
       })
+      console.log(Admitinputs) 
+
+      Admitinputs.forEach(async(i)=>{
+        let filepath="Admits/"+SAPID+"/"+i["files"].name
+        uploadFile(filepath,i["files"])
+      addDoc(collection(db,"PerDetails",SAPID,"Admits"),{
+        filename:filepath,
+        name:i["name"]
+      }) 
+
+      // i["files"]= await firestor.collection('PerDetails').doc(i).update({
+      //   fileName: "Masters/"+SAPID+"/"+file_add.name,
+      // });
+  
+      // addSelectedCompany(SAPID,i);
+    })
         const details = collection(db, "PerDetails");
         await setDoc(doc(db, "PerDetails", SAPID), {
 
@@ -270,6 +304,7 @@ export default function EditProfile() {
         SEM4: Number(SEM4),
         SEM5: Number(SEM5),
         SEM6: Number(SEM6),
+
       });
 
       
@@ -297,9 +332,7 @@ export default function EditProfile() {
   };
 
 
-  const [inputs, setInputs] = useState([]);
-  const [Masterinputs, setMasterInputs] = useState([]);
-  const [Admitinputs, setAdmitInputs] = useState([]);
+
 
 
   const addInput = () => {
@@ -333,16 +366,16 @@ export default function EditProfile() {
     setFileName(newInputs2P.name);
 
   };
-  const handleFileUploadMasters = (index, event) => {
-    const newInputs2M = [...Masterinputs];
-    newInputs2M[index]["name"] = event.target.files[0];
-    setMasterInputs(newInputs2M);
+  const handleFileUploadMasters = (index, event) => { 
+    const newInputs2M = [...Admitinputs];
+    newInputs2M[index]["files"] = event.target.files[0];
+    setAdmitInputs(newInputs2M); 
   };
   const handleInputChange2 = (index, event) => {
     const newInputs1 = [...Admitinputs];
-    newInputs1[index] = event.target.value;
+    newInputs1[index]["name"] = event.target.value;
     setAdmitInputs(newInputs1);
-  };
+  }; 
   return (
     <>
       <br />
@@ -528,7 +561,7 @@ export default function EditProfile() {
           value={address}
         ></textarea>
         <br />
-        {/* <label htmlFor="DOB" id="DOB" className="label">
+        <label htmlFor="DOB" id="DOB" className="label">
           Create Password :
         </label>{" "}
         <br />
@@ -554,7 +587,7 @@ export default function EditProfile() {
           required
           onChange={handlePassword}
           value={password}
-        /> */}
+        />
         <br />
         <h3 className="formH3">
           EDUCATION DETAILS<br />{" "}
@@ -760,17 +793,20 @@ export default function EditProfile() {
           Mention the details of all the admits you got selected.
           <input type="button" onClick={addAdmitInput} className="login" value={"Add"}/>
           <br />
+          
         <div className="container1">
+          
       {Admitinputs.map((input, index) => (
         <div key={index} className="row">
           <div className="col">
           <input
+          
             type="text"
-            value={input.name}
+            value={Admitinputs[index].name}
             placeholder="Admit"
             onChange={(event) => handleInputChange2(index, event)}
             className="placemnt"
-          />
+          /> 
           </div>
           <div className="col">
           <input type="file" onChange={(event) => handleFileUploadMasters(index, event)} />
@@ -790,6 +826,10 @@ export default function EditProfile() {
           
         {/* </Link> */}
       </form>
+      {UploadedAdmit.map((x)=>{
+            console.log(x["name"])
+            return (<div>x["name"]</div>)
+          })}
     </>
   );
 }

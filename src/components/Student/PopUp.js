@@ -133,6 +133,8 @@ export default function PopUp() {
                 {company.visitDate} at {company.reportTime} do you want to
                 Register ?
               </h3>
+              {/* <h4>Role :</h4> */}
+              {/* <p>{company.jobDescription}</p> */}
               <br />
 
               <button
